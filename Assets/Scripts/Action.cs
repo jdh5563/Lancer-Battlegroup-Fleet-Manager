@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Escort : BGComponent
+public class Action : MonoBehaviour
 {
+	[SerializeField] protected string actionName;
+	[SerializeField] protected string mechanicalText;
 	[SerializeField] protected uint minRange;
 	[SerializeField] protected uint maxRange;
-    [SerializeField] protected int hp;
 	[SerializeField] protected Dictionary<string, int> tags;
 
 	// Start is called before the first frame update
@@ -20,4 +21,9 @@ public class Escort : BGComponent
     {
         
     }
+
+	protected virtual void Display()
+	{
+
+	}
 }

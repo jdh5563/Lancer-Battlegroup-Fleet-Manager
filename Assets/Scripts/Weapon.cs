@@ -4,11 +4,9 @@ using UnityEngine;
 
 public abstract class Weapon : BGComponent
 {
-	[SerializeField] protected Dictionary<string, int> tags;
+	[SerializeField] protected string mechanicalText;
 	[SerializeField] protected uint minRange;
 	[SerializeField] protected uint maxRange;
-    [SerializeField] protected bool isSingleTarget;
-    [SerializeField] protected uint[] damageExpression = new uint[3];
 
 	// Start is called before the first frame update
 	void Start()
@@ -21,4 +19,29 @@ public abstract class Weapon : BGComponent
     {
         
     }
+
+	/*
+	 SPINAL LINAC COHERENT BEAM CANNON
+
+
+Superheavy, Single-Target, Charge 2, Critical
+[Range 4-1][8 damage][2 points]
+
+
+An old workhorse, the linear accelerator
+coherent beam cannon once marked the
+pinnacle of energy weapon development.
+Reliable at middle-confidence ranges and,
+
+with modern power systems, capable of rapid-
+cycling main battery fire, a LinAc CBC is a
+
+formidable weapon favored by captains who
+prefer more traditional strategies.
+	 */
+
+	protected override void Display()
+	{
+
+	}
 }

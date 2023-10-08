@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8058303199256161865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1595392947524540449}
+  - component: {fileID: 9114558274593343278}
+  m_Layer: 0
+  m_Name: Caspian Sea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1595392947524540449
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8058303199256161865}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.6739595, y: 13.027174, z: 133.85416}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9114558274593343278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8058303199256161865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb23ff205b1ed1843bdd03f183daa1c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: CASPIAN SEA-CLASS FRIGATE
+  flavorText: 
+  pointCost: 3
+  isFlagship: 0
+  shipName: 
+  playerDesc: 
+  company: 0
+  hp: 16
+  defense: 10
+  auxSlots: 1
+  primSlots: 1
+  sHeavySlots: 0
+  systemSlots: 0
+  wingSlots: 0
+  escortSlots: 0
+  shipArt: {fileID: 2800000, guid: d5951bf9df314184d96b5f7df02da8ea, type: 3}
+  auxWeapons: []
+  primWeapons: []
+  sHeavyWeapons: []
+  systems: []
+  wings: []
+  escorts: []
+  legacies: []
+  actions: []

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShipSystem : BGComponent
 {
 	[SerializeField] protected Dictionary<string, int> tags;
-    [SerializeField] protected List<Tactic> tactics;
+    [SerializeField] protected List<Action> actions;
 
 	// Start is called before the first frame update
 	void Start()
@@ -18,4 +18,9 @@ public class ShipSystem : BGComponent
     {
         
     }
+
+	protected override void Display()
+	{
+
+	}
 }

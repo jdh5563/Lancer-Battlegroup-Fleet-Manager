@@ -1,18 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
-public class Trait : MonoBehaviour
+public abstract class Trait
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    protected string traitName;
+    protected string mechanicalText;
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Display()
     {
-        
+
     }
 }
