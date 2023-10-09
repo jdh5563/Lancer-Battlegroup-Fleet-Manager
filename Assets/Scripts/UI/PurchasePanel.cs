@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,13 +16,6 @@ public class PurchasePanel : MonoBehaviour
 
     [SerializeField] private MasterLists masterLists;
 
-    public List<BGComponent> Purchasables
-    {
-        get { return purchasables; }
-
-        set { purchasables.AddRange(value); }
-    }
-
 	// Start is called before the first frame update
 	void Start()
     {
@@ -36,6 +30,13 @@ public class PurchasePanel : MonoBehaviour
 
     public void DisplaySidebar(string componentType)
     {
+        header.GetComponentInChildren<TMP_Text>().text = componentType;
+
+        for(int i = 0; i < content.transform.childCount; i++)
+        {
+            Destroy(content.transform.GetChild(i).gameObject);
+        }
+
         purchasables.Clear();
         purchasables.AddRange(masterLists.components[componentType]);
 

@@ -60,7 +60,7 @@ MonoBehaviour:
   systemSlots: 1
   wingSlots: 0
   escortSlots: 0
-  shipArt: {fileID: 0}
+  shipArt: {fileID: 2800000, guid: f9ae383a6018b7f4790cad03239f1451, type: 3}
   auxWeapons: []
   primWeapons: []
   sHeavyWeapons: []
