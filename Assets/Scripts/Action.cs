@@ -2,28 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Action : MonoBehaviour
+public abstract class Action
 {
-	[SerializeField] protected string actionName;
-	[SerializeField] protected string mechanicalText;
-	[SerializeField] protected uint minRange;
-	[SerializeField] protected uint maxRange;
-	[SerializeField] protected Dictionary<string, int> tags;
+    protected string actionName;
+    protected string mechanicalText;
+    protected bool isTactic;
+    protected uint minRange;
+    protected uint maxRange;
+    protected Dictionary<Tag, int> tags;
 
-	// Start is called before the first frame update
-	void Start()
+    public Action()
     {
-        
+        tags = new Dictionary<Tag, int>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Display()
     {
-        
+
     }
-
-	protected virtual void Display()
-	{
-
-	}
 }
