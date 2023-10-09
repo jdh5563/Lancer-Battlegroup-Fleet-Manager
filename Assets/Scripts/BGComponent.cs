@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,7 +46,7 @@ public abstract class BGComponent : MonoBehaviour
     {
         GameObject buttonObj = Instantiate(buttonPrefab);
 		buttonObj.GetComponentInChildren<TMP_Text>().text = componentName;
-		buttonObj.GetComponent<Button>().onClick.AddListener(Display);
+        buttonObj.AddComponent(GetType());
         return buttonObj;
     }
 }

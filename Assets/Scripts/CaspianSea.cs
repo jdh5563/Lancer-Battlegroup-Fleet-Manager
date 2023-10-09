@@ -21,7 +21,7 @@ public class CaspianSea : Ship
 
 	public override void Display()
 	{
-		Debug.Log("Bruh");
+		
 	}
 
 	class FireControlNetworking : Trait

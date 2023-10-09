@@ -34,15 +34,23 @@ public class PurchasePanel : MonoBehaviour
         
     }
 
-    public void Display(string componentType)
+    public void DisplaySidebar(string componentType)
     {
         purchasables.Clear();
         purchasables.AddRange(masterLists.components[componentType]);
 
-        for(int i = 0; i < purchasables.Count; i++)
+        foreach(BGComponent component in purchasables)
         {
-            GameObject buttonObj = purchasables[i].GenerateButton();
+			GameObject buttonObj = component.GenerateButton();
+			buttonObj.GetComponent<Button>().onClick.AddListener(() => { DisplayInfo(component); });
             buttonObj.transform.SetParent(content.transform, false);
         }
     }
+
+    public void DisplayInfo(BGComponent component)
+    {
+        // This will build a bunch of text boxes and whatnot
+        // based on the ship associated with the selected button
+        component.Display();
+	}
 }
