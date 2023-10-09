@@ -25,7 +25,7 @@ public class PurchasePanel : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        Display(0);
+
     }
 
     // Update is called once per frame
@@ -34,10 +34,10 @@ public class PurchasePanel : MonoBehaviour
         
     }
 
-    public void Display(int componentType)
+    public void Display(string componentType)
     {
         purchasables.Clear();
-        purchasables.AddRange(masterLists.components[(ComponentType)componentType]);
+        purchasables.AddRange(masterLists.components[componentType]);
 
         for(int i = 0; i < purchasables.Count; i++)
         {

@@ -2,18 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ComponentType
-{
-	Frigate,
-	Carrier,
-	Battleship,
-	System
-}
-
 [CreateAssetMenu(fileName = "MasterLists", menuName = "ScriptableObjects/MasterLists", order = 1)]
 public class MasterLists : ScriptableObject
 {
-	public Dictionary<ComponentType, List<BGComponent>> components = new Dictionary<ComponentType, List<BGComponent>>();
+	public Dictionary<string, List<BGComponent>> components = new Dictionary<string, List<BGComponent>>();
 
 	[SerializeField] private List<BGComponent> frigates;
 	[SerializeField] private List<BGComponent> carriers;
@@ -22,9 +14,9 @@ public class MasterLists : ScriptableObject
 
 	private void OnEnable()
 	{
-		components.Add(ComponentType.Frigate, frigates);
-		components.Add(ComponentType.Carrier, carriers);
-		components.Add(ComponentType.Battleship, battleships);
-		components.Add(ComponentType.System, systems);
+		components.Add("Frigate", frigates);
+		components.Add("Carrier", carriers);
+		components.Add("Battleship", battleships);
+		components.Add("System", systems);
 	}
 }
