@@ -19,7 +19,7 @@ public class ShipSystem : BGComponent
         
     }
 
-	protected override void Display()
+	public override void Display()
 	{
 
 	}

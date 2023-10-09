@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum Tag
 {
@@ -23,6 +25,8 @@ public abstract class BGComponent : MonoBehaviour
     [SerializeField] protected string flavorText;
 	[SerializeField] protected uint pointCost;
 
+    [SerializeField] protected GameObject buttonPrefab;
+
 	// Start is called before the first frame update
 	protected virtual void Start()
     {
@@ -35,10 +39,13 @@ public abstract class BGComponent : MonoBehaviour
         
     }
 
-    protected abstract void Display();
+    public abstract void Display();
 
-    public virtual void GenerateButton()
+    public GameObject GenerateButton()
     {
-
+        GameObject buttonObj = Instantiate(buttonPrefab);
+		buttonObj.GetComponentInChildren<TMP_Text>().text = componentName;
+		buttonObj.GetComponent<Button>().onClick.AddListener(Display);
+        return buttonObj;
     }
 }

@@ -18,7 +18,7 @@ public class Creighton : Ship
         
     }
 
-	protected override void Display()
+	public override void Display()
 	{
 		
 	}

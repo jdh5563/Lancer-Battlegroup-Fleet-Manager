@@ -18,7 +18,7 @@ public class Huron : Ship
         
     }
 
-	protected override void Display()
+	public override void Display()
 	{
 		
 	}

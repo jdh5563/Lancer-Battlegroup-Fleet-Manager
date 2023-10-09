@@ -67,7 +67,7 @@ public abstract class Ship : BGComponent
         
     }
 
-    protected override void Display()
+    public override void Display()
     {
 
     }

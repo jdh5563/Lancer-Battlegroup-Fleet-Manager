@@ -40,7 +40,7 @@ formidable weapon favored by captains who
 prefer more traditional strategies.
 	 */
 
-	protected override void Display()
+	public override void Display()
 	{
 
 	}

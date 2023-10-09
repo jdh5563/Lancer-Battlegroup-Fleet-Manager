@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PurchasePanel : MonoBehaviour
 {
 	[SerializeField] private GameObject header;
 	[SerializeField] private GameObject sidePanel;
 	[SerializeField] private GameObject infoPanel;
+    [SerializeField] private GameObject content;
 
     private List<BGComponent> purchasables = new List<BGComponent>();
     private List<BGComponent> filteredList = new List<BGComponent>();
+
+    [SerializeField] private MasterLists masterLists;
 
     public List<BGComponent> Purchasables
     {
@@ -21,7 +25,7 @@ public class PurchasePanel : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        
+        Display(0);
     }
 
     // Update is called once per frame
@@ -30,9 +34,15 @@ public class PurchasePanel : MonoBehaviour
         
     }
 
-	public void Display(List<BGComponent> purchasables)
+    public void Display(int componentType)
     {
-        infoPanel.SetActive(true);
-        this.purchasables = purchasables;
+        purchasables.Clear();
+        purchasables.AddRange(masterLists.components[(ComponentType)componentType]);
+
+        for(int i = 0; i < purchasables.Count; i++)
+        {
+            GameObject buttonObj = purchasables[i].GenerateButton();
+            buttonObj.transform.SetParent(content.transform, false);
+        }
     }
 }

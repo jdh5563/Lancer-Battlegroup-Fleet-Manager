@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CaspianSea : Ship
 {
@@ -18,9 +19,9 @@ public class CaspianSea : Ship
         
     }
 
-	protected override void Display()
+	public override void Display()
 	{
-		
+		Debug.Log("Bruh");
 	}
 
 	class FireControlNetworking : Trait

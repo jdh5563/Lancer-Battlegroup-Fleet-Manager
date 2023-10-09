@@ -19,7 +19,7 @@ public class Superior : Ship
         
     }
 
-	protected override void Display()
+	public override void Display()
 	{
 		
 	}

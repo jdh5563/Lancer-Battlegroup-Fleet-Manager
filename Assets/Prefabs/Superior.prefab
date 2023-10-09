@@ -47,6 +47,7 @@ MonoBehaviour:
   componentName: SUPERIOR-CLASS FRIGATE
   flavorText: 
   pointCost: 3
+  buttonPrefab: {fileID: 2069203811205027654, guid: 85e89d797e8be024191b25521f4d139f, type: 3}
   isFlagship: 0
   shipName: 
   playerDesc: 

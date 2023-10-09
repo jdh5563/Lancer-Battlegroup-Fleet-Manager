@@ -20,7 +20,7 @@ public class Subline : BGComponent
         
     }
 
-	protected override void Display()
+	public override void Display()
 	{
 
 	}
