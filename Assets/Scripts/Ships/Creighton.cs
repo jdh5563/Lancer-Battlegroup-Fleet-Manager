@@ -18,7 +18,7 @@ public class Creighton : Ship
         
     }
 
-	public override void Display()
+	public override void Display(GameObject infoPanel)
 	{
 		
 	}

@@ -19,7 +19,7 @@ public class CaspianSea : Ship
         
     }
 
-	public override void Display()
+	public override void Display(GameObject infoPanel)
 	{
 		
 	}

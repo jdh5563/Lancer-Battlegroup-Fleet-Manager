@@ -26,7 +26,10 @@ public abstract class BGComponent : MonoBehaviour
     [SerializeField] protected string flavorText;
 	[SerializeField] protected uint pointCost;
 
-    [SerializeField] protected GameObject buttonPrefab;
+    public string ComponentName
+    {
+        get { return componentName; }
+    }
 
 	// Start is called before the first frame update
 	protected virtual void Start()
@@ -40,13 +43,5 @@ public abstract class BGComponent : MonoBehaviour
         
     }
 
-    public abstract void Display();
-
-    public GameObject GenerateButton()
-    {
-        GameObject buttonObj = Instantiate(buttonPrefab);
-		buttonObj.GetComponentInChildren<TMP_Text>().text = componentName;
-        buttonObj.AddComponent(GetType());
-        return buttonObj;
-    }
+    public abstract void Display(GameObject infoPanel);
 }

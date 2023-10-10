@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FleetPanel : MonoBehaviour
 {
@@ -28,5 +30,23 @@ public class FleetPanel : MonoBehaviour
         if(currentIndex < 0) currentIndex = buttons.Count - 1;
 
         buttons[currentIndex].SetActive(true);
+    }
+
+    public void UpdateShipView()
+    {
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            GameObject shipView = transform.GetChild(i).gameObject;
+
+			if (shipView.activeSelf)
+            {
+                Ship ship = shipView.GetComponentInChildren<Ship>();
+                RawImage shipArt = shipView.GetComponentInChildren<RawImage>();
+				shipArt.texture = ship.ShipArt;
+                //shipArt.rectTransform.sizeDelta = new Vector2(ship.ShipArt.width, ship.ShipArt.height);
+                
+                shipView.GetComponentInChildren<TMP_Text>().text = ship.ComponentName;
+            }
+        }
     }
 }
