@@ -37,7 +37,7 @@ public abstract class Ship : BGComponent
     [SerializeField] protected List<Trait> traits;
     [SerializeField] protected List<Action> actions;
 
-    public Texture2D ShipArt { get; }
+    public Texture2D ShipArt { get { return shipArt; } }
 
     // Start is called before the first frame update
     protected override void Start()
