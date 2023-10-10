@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -68,8 +69,23 @@ public abstract class Ship : BGComponent
         
     }
 
-    public override void Display(GameObject infoPanel)
+    public override void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab)
     {
+        base.Display(infoPanel, textPrefab, buttonPrefab);
 
-    }
+		GameObject companyText = Instantiate(textPrefab, infoPanel.transform);
+		companyText.GetComponent<RectTransform>().anchoredPosition = new Vector2(-200, 130);
+		companyText.GetComponent<RectTransform>().sizeDelta = new Vector2(140, 20);
+		companyText.GetComponent<TMP_Text>().text = "Company: " + company.ToString();
+
+		GameObject hpText = Instantiate(textPrefab, infoPanel.transform);
+		hpText.GetComponent<RectTransform>().anchoredPosition = new Vector2(160, 130);
+		hpText.GetComponent<RectTransform>().sizeDelta = new Vector2(60, 20);
+		hpText.GetComponent<TMP_Text>().text = "HP: " + hp.ToString();
+
+		GameObject defenseText = Instantiate(textPrefab, infoPanel.transform);
+		defenseText.GetComponent<RectTransform>().anchoredPosition = new Vector2(240, 130);
+		defenseText.GetComponent<RectTransform>().sizeDelta = new Vector2(60, 20);
+		defenseText.GetComponent<TMP_Text>().text = "Def: " + defense.ToString();
+	}
 }

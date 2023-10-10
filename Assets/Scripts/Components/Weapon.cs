@@ -40,7 +40,7 @@ formidable weapon favored by captains who
 prefer more traditional strategies.
 	 */
 
-	public override void Display(GameObject infoPanel)
+	public override void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab)
 	{
 
 	}

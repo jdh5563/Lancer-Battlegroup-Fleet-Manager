@@ -15,6 +15,8 @@ public class PurchasePanel : MonoBehaviour
 	[SerializeField] private GameObject sidePanel;
 	[SerializeField] private GameObject infoPanel;
     [SerializeField] private GameObject content;
+
+    [SerializeField] private GameObject textPrefab;
     [SerializeField] private GameObject buttonPrefab;
 
     private List<BGComponent> purchasables = new List<BGComponent>();
@@ -67,9 +69,13 @@ public class PurchasePanel : MonoBehaviour
     {
         // This will build a bunch of text boxes and whatnot
         // based on the ship associated with the selected button
-        if (currentComponent != null) Destroy(currentComponent.gameObject);
+        for(int i = 1; i < infoPanel.transform.childCount; i++)
+        {
+            Destroy(infoPanel.transform.GetChild(i).gameObject);
+        }
+
         currentComponent = Instantiate(component.gameObject, infoPanel.transform).GetComponent<BGComponent>();
-        component.Display(infoPanel);
+        currentComponent.Display(infoPanel, textPrefab, buttonPrefab);
 	}
 
     public void Purchase()

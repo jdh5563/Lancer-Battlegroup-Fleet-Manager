@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CaspianSea : Ship
 {
+	private void Awake()
+	{
+		flavorText = LongStrings.CASPIAN_FLAVOR;
+	}
+
 	// Start is called before the first frame update
 	protected override void Start()
     {
         base.Start();
-		flavorText = LongStrings.CASPIAN_FLAVOR;
 		traits.Add(new FireControlNetworking());
 	}
 
@@ -19,9 +24,9 @@ public class CaspianSea : Ship
         
     }
 
-	public override void Display(GameObject infoPanel)
+	public override void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab)
 	{
-		
+		base.Display(infoPanel, textPrefab, buttonPrefab);
 	}
 
 	class FireControlNetworking : Trait

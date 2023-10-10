@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Superior : Ship
 {
+	private void Awake()
+	{
+		flavorText = LongStrings.HURON_FLAVOR;
+	}
+
 	// Start is called before the first frame update
 	protected override void Start()
     {
         base.Start();
-		flavorText = LongStrings.HURON_FLAVOR;
 		traits.Add(new RepairDrones());
 		actions.Add(new FleetTriage());
 	}
@@ -19,9 +23,9 @@ public class Superior : Ship
         
     }
 
-	public override void Display(GameObject infoPanel)
+	public override void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab)
 	{
-		
+		base.Display(infoPanel, textPrefab, buttonPrefab);
 	}
 
 	class RepairDrones : Trait

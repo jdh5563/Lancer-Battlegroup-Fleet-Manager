@@ -20,7 +20,7 @@ public class Subline : BGComponent
         
     }
 
-	public override void Display(GameObject infoPanel)
+	public override void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab)
 	{
 
 	}

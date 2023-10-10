@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Huron : Ship
 {
+	private void Awake()
+	{
+		flavorText = LongStrings.HURON_FLAVOR;
+	}
+
 	// Start is called before the first frame update
 	protected override void Start()
     {
         base.Start();
-		flavorText = LongStrings.HURON_FLAVOR;
 		traits.Add(new FlakScreen());
 	}
 
@@ -18,9 +22,9 @@ public class Huron : Ship
         
     }
 
-	public override void Display(GameObject infoPanel)
+	public override void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab)
 	{
-		
+		base.Display(infoPanel, textPrefab, buttonPrefab);
 	}
 
 	class FlakScreen : Trait

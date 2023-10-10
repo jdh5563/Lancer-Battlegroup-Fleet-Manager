@@ -44,7 +44,6 @@ public class FleetPanel : MonoBehaviour
                 RawImage shipArt = shipView.GetComponentInChildren<RawImage>();
 				shipArt.texture = ship.ShipArt;
                 shipArt.rectTransform.sizeDelta = new Vector2(ship.ShipArt.width, ship.ShipArt.height);
-                
                 shipView.GetComponentInChildren<TMP_Text>().text = ship.ComponentName;
             }
         }

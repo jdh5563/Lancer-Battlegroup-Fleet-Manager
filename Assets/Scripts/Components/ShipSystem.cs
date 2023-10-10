@@ -19,7 +19,7 @@ public class ShipSystem : BGComponent
         
     }
 
-	public override void Display(GameObject infoPanel)
+	public override void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab)
 	{
 
 	}
