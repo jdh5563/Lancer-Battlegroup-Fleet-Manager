@@ -27,6 +27,7 @@ public abstract class Ship : BGComponent
     [SerializeField] protected uint wingSlots;
     [SerializeField] protected uint escortSlots;
     [SerializeField] protected Texture2D shipArt;
+	[SerializeField] protected Texture2D companyArt;
 
 	[SerializeField] protected List<AuxiliaryWeapon> auxWeapons;
 	[SerializeField] protected List<PrimaryWeapon> primWeapons;
@@ -73,14 +74,14 @@ public abstract class Ship : BGComponent
         
     }
 
-    public override void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab)
+    public override void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab, GameObject imagePrefab)
     {
-        base.Display(infoPanel, textPrefab, buttonPrefab);
+        base.Display(infoPanel, textPrefab, buttonPrefab, imagePrefab);
 
-		GameObject companyText = Instantiate(textPrefab, infoPanel.transform);
-		companyText.GetComponent<RectTransform>().anchoredPosition = new Vector2(-200, 130);
-		companyText.GetComponent<RectTransform>().sizeDelta = new Vector2(140, 20);
-		companyText.GetComponent<TMP_Text>().text = "Company: " + company.ToString();
+		GameObject companyText = Instantiate(imagePrefab, infoPanel.transform);
+		companyText.GetComponent<RectTransform>().anchoredPosition = new Vector2(-260, 160);
+		companyText.GetComponent<RectTransform>().sizeDelta = new Vector2(30, 30);
+		companyText.GetComponent<RawImage>().texture = companyArt;
 
 		GameObject hpText = Instantiate(textPrefab, infoPanel.transform);
 		hpText.GetComponent<RectTransform>().anchoredPosition = new Vector2(160, 130);

@@ -43,10 +43,10 @@ public abstract class BGComponent : MonoBehaviour
         
     }
 
-    public virtual void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab)
+    public virtual void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab, GameObject imagePrefab)
     {
 		GameObject nameText = Instantiate(textPrefab, infoPanel.transform);
-		nameText.GetComponent<RectTransform>().anchoredPosition = new Vector2(-80, 160);
+		nameText.GetComponent<RectTransform>().anchoredPosition = new Vector2(-60, 160);
 		nameText.GetComponent<RectTransform>().sizeDelta = new Vector2(375, 25);
 		nameText.GetComponent<TMP_Text>().text = componentName;
 

@@ -18,6 +18,7 @@ public class PurchasePanel : MonoBehaviour
 
     [SerializeField] private GameObject textPrefab;
     [SerializeField] private GameObject buttonPrefab;
+    [SerializeField] private GameObject imagePrefab;
 
     private List<BGComponent> purchasables = new List<BGComponent>();
     private List<BGComponent> filteredList = new List<BGComponent>();
@@ -82,7 +83,7 @@ public class PurchasePanel : MonoBehaviour
         }
 
         currentComponent = Instantiate(component.gameObject, infoPanel.transform).GetComponent<BGComponent>();
-        currentComponent.Display(infoPanel, textPrefab, buttonPrefab);
+        currentComponent.Display(infoPanel, textPrefab, buttonPrefab, imagePrefab);
 	}
 
     public void Purchase()

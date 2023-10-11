@@ -24,9 +24,9 @@ public class CaspianSea : Ship
         
     }
 
-	public override void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab)
+	public override void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab, GameObject imagePrefab)
 	{
-		base.Display(infoPanel, textPrefab, buttonPrefab);
+		base.Display(infoPanel, textPrefab, buttonPrefab, imagePrefab);
 	}
 
 	class FireControlNetworking : Trait
