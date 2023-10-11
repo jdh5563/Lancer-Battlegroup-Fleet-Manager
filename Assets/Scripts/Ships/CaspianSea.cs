@@ -8,7 +8,7 @@ public class CaspianSea : Ship
 {
 	private void Awake()
 	{
-		flavorText = LongStrings.CASPIAN_FLAVOR;
+		flavorText = MiscData.CASPIAN_FLAVOR;
 	}
 
 	// Start is called before the first frame update
@@ -44,7 +44,7 @@ public class CaspianSea : Ship
 		public FireControlNetworking()
 		{
 			traitName = "Fire Control Networking";
-			mechanicalText = LongStrings.FCN_TEXT;
+			mechanicalText = MiscData.FCN_TEXT;
 		}
 	}
 }

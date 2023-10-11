@@ -6,7 +6,7 @@ public class Huron : Ship
 {
 	private void Awake()
 	{
-		flavorText = LongStrings.HURON_FLAVOR;
+		flavorText = MiscData.HURON_FLAVOR;
 	}
 
 	// Start is called before the first frame update
@@ -32,7 +32,7 @@ public class Huron : Ship
 		public FlakScreen()
 		{
 			traitName = "Flak Screen";
-			mechanicalText = LongStrings.FLAK_SCREEN_TEXT;
+			mechanicalText = MiscData.FLAK_SCREEN_TEXT;
 		}
 	}
 }

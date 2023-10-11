@@ -6,7 +6,7 @@ public class Superior : Ship
 {
 	private void Awake()
 	{
-		flavorText = LongStrings.HURON_FLAVOR;
+		flavorText = MiscData.HURON_FLAVOR;
 	}
 
 	// Start is called before the first frame update
@@ -33,7 +33,7 @@ public class Superior : Ship
 		public RepairDrones()
 		{
 			traitName = "Repair Drones";
-			mechanicalText = LongStrings.FLAK_SCREEN_TEXT;
+			mechanicalText = MiscData.FLAK_SCREEN_TEXT;
 		}
 	}
 
@@ -42,10 +42,10 @@ public class Superior : Ship
 		public FleetTriage() : base()
 		{
 			actionName = "Fleet Triage";
-			mechanicalText = LongStrings.FLAK_SCREEN_TEXT;
+			mechanicalText = MiscData.FLAK_SCREEN_TEXT;
 			isTactic = true;
-			minRange = LongStrings.NO_RANGE;
-			maxRange = LongStrings.NO_RANGE;
+			minRange = MiscData.NO_RANGE;
+			maxRange = MiscData.NO_RANGE;
             tags.Add(Tag.Limited, 1);
         }
 	}

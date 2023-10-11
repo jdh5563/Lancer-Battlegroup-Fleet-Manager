@@ -6,7 +6,7 @@ public class Creighton : Ship
 {
     private void Awake()
     {
-		flavorText = LongStrings.HURON_FLAVOR;
+		flavorText = MiscData.HURON_FLAVOR;
 	}
 
     // Start is called before the first frame update
@@ -32,7 +32,7 @@ public class Creighton : Ship
 		public PurposeBuilt()
 		{
 			traitName = "Purpose-Built";
-			mechanicalText = LongStrings.FLAK_SCREEN_TEXT;
+			mechanicalText = MiscData.FLAK_SCREEN_TEXT;
 		}
 	}
 
@@ -41,7 +41,7 @@ public class Creighton : Ship
         public Vega()
         {
             traitName = "VEGA-Pattern Targeting Laser";
-            mechanicalText = LongStrings.FLAK_SCREEN_TEXT;
+            mechanicalText = MiscData.FLAK_SCREEN_TEXT;
         }
     }
 
@@ -50,7 +50,7 @@ public class Creighton : Ship
         public Calibrated()
         {
             traitName = "Calibrated Firing Platform";
-            mechanicalText = LongStrings.FLAK_SCREEN_TEXT;
+            mechanicalText = MiscData.FLAK_SCREEN_TEXT;
         }
     }
 }
