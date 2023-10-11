@@ -38,7 +38,11 @@ public abstract class Ship : BGComponent
     [SerializeField] protected List<Trait> traits;
     [SerializeField] protected List<Action> actions;
 
-    public Texture2D ShipArt { get { return shipArt; } }
+	private int slotNum = 0;
+	private int x = -195;
+	private int y = 85;
+
+	public Texture2D ShipArt { get { return shipArt; } }
 
     // Start is called before the first frame update
     protected override void Start()
@@ -87,5 +91,28 @@ public abstract class Ship : BGComponent
 		defenseText.GetComponent<RectTransform>().anchoredPosition = new Vector2(240, 130);
 		defenseText.GetComponent<RectTransform>().sizeDelta = new Vector2(60, 20);
 		defenseText.GetComponent<TMP_Text>().text = "Def: " + defense.ToString();
+
+		if(auxSlots > 0) GenerateSlotText(infoPanel, textPrefab, auxSlots, "Auxiliary");
+		if(primSlots > 0) GenerateSlotText(infoPanel, textPrefab, primSlots, "Primary");
+		if (sHeavySlots > 0) GenerateSlotText(infoPanel, textPrefab, sHeavySlots, "Super Heavy");
+		if (systemSlots > 0) GenerateSlotText(infoPanel, textPrefab, systemSlots, "System");
+		if (wingSlots > 0) GenerateSlotText(infoPanel, textPrefab, wingSlots, "Wing");
+		if (escortSlots > 0) GenerateSlotText(infoPanel, textPrefab, escortSlots, "Escort");
+	}
+
+	private void GenerateSlotText(GameObject infoPanel, GameObject textPrefab, uint slots, string text)
+	{
+		GameObject button = Instantiate(textPrefab, infoPanel.transform);
+		button.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
+		button.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 40);
+		button.GetComponentInChildren<TMP_Text>().text = text + " Slots: " + slots;
+
+		slotNum++;
+		x += 195;
+		if (slotNum % 3 == 0)
+		{
+			x = -195;
+			y += 40;
+		}
 	}
 }

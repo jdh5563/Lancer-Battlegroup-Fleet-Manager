@@ -32,20 +32,12 @@ public class FleetPanel : MonoBehaviour
         buttons[currentIndex].SetActive(true);
     }
 
-    public void UpdateShipView()
+    public void UpdateShipView(GameObject shipToAssign)
     {
-        for(int i = 0; i < transform.childCount; i++)
-        {
-            GameObject shipView = transform.GetChild(i).gameObject;
-
-			if (shipView.activeSelf)
-            {
-                Ship ship = shipView.GetComponentInChildren<Ship>();
-                RawImage shipArt = shipView.GetComponentInChildren<RawImage>();
-				shipArt.texture = ship.ShipArt;
-                shipArt.rectTransform.sizeDelta = new Vector2(ship.ShipArt.width, ship.ShipArt.height);
-                shipView.GetComponentInChildren<TMP_Text>().text = ship.ComponentName;
-            }
-        }
+        Ship ship = shipToAssign.GetComponentInChildren<Ship>();
+        RawImage shipArt = shipToAssign.GetComponentInChildren<RawImage>();
+		shipArt.texture = ship.ShipArt;
+        shipArt.rectTransform.sizeDelta = new Vector2(100, 100 * ship.ShipArt.height / ship.ShipArt.width);
+		shipToAssign.GetComponentInChildren<TMP_Text>().text = ship.ComponentName;
     }
 }

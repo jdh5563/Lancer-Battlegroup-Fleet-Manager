@@ -49,6 +49,8 @@ public class PurchasePanel : MonoBehaviour
 	public void DisplaySidebar(string componentType)
     {
         selectedButton = EventSystem.current.currentSelectedGameObject;
+        infoPanel.GetComponentInChildren<Button>().onClick.AddListener(() => selectedButton.transform.parent.GetComponent<FleetPanel>().UpdateShipView(selectedButton));
+
         header.GetComponentInChildren<TMP_Text>().text = componentType;
 
         for(int i = 0; i < content.transform.childCount; i++)
@@ -56,7 +58,12 @@ public class PurchasePanel : MonoBehaviour
             Destroy(content.transform.GetChild(i).gameObject);
         }
 
-        purchasables.Clear();
+		for (int i = 1; i < infoPanel.transform.childCount; i++)
+		{
+			Destroy(infoPanel.transform.GetChild(i).gameObject);
+		}
+
+		purchasables.Clear();
         purchasables.AddRange(masterLists.components[componentType]);
 
         foreach(BGComponent component in purchasables)
@@ -67,9 +74,9 @@ public class PurchasePanel : MonoBehaviour
 
     public void DisplayInfo(BGComponent component)
     {
-        // This will build a bunch of text boxes and whatnot
-        // based on the ship associated with the selected button
-        for(int i = 1; i < infoPanel.transform.childCount; i++)
+		// This will build a bunch of text boxes based on
+		// the ship associated with the selected button
+		for (int i = 1; i < infoPanel.transform.childCount; i++)
         {
             Destroy(infoPanel.transform.GetChild(i).gameObject);
         }
