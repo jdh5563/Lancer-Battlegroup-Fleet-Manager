@@ -49,8 +49,8 @@ public class PurchasePanel : MonoBehaviour
 
 	public void DisplaySidebar(string componentType)
     {
-        selectedButton = EventSystem.current.currentSelectedGameObject;
-        infoPanel.GetComponentInChildren<Button>().onClick.AddListener(() => selectedButton.transform.parent.GetComponent<FleetPanel>().UpdateShipView(selectedButton));
+        selectedButton = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
+        infoPanel.GetComponentInChildren<Button>().onClick.AddListener(() => selectedButton.transform.GetComponentInParent<FleetPanel>().UpdateShipView(selectedButton));
 
         header.GetComponentInChildren<TMP_Text>().text = componentType;
 
