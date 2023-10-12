@@ -13,6 +13,9 @@ public abstract class Action
 
     public Action()
     {
+        isTactic = true;
+        minRange = MiscData.NO_RANGE;
+        maxRange = MiscData.NO_RANGE;
         tags = new Dictionary<Tag, int>();
     }
 

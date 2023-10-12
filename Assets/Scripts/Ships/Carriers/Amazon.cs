@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Creighton : Ship
+public class Amazon : Ship
 {
     private void Awake()
     {
 		flavorText = MiscData.HURON_FLAVOR;
-	}
+        traits.Add(new RapidPrinting());
+    }
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-		traits.Add(new PurposeBuilt());
 	}
 
     // Update is called once per frame
@@ -27,30 +27,12 @@ public class Creighton : Ship
 		base.Display(infoPanel, textPrefab, buttonPrefab, imagePrefab);
 	}
 
-	class PurposeBuilt : Trait
+	class RapidPrinting : Trait
 	{
-		public PurposeBuilt()
+		public RapidPrinting()
 		{
-			traitName = "Purpose-Built";
+			traitName = "Rapid Printing";
 			mechanicalText = MiscData.FLAK_SCREEN_TEXT;
 		}
 	}
-
-    class Vega : Trait
-    {
-        public Vega()
-        {
-            traitName = "VEGA-Pattern Targeting Laser";
-            mechanicalText = MiscData.FLAK_SCREEN_TEXT;
-        }
-    }
-
-    class Calibrated : Trait
-    {
-        public Calibrated()
-        {
-            traitName = "Calibrated Firing Platform";
-            mechanicalText = MiscData.FLAK_SCREEN_TEXT;
-        }
-    }
 }

@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ShipSystem : BGComponent
+public class Murie : Ship
 {
-	[SerializeField] protected Dictionary<Tag, int> tags;
-    [SerializeField] protected List<Action> actions;
-    [SerializeField] protected string mechanicalText;
+    private void Awake()
+    {
+		flavorText = MiscData.HURON_FLAVOR;
+        traits.Add(new Paragon());
+    }
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        actions = new List<Action>();
-        tags = new Dictionary<Tag, int>();
-    }
+	}
 
     // Update is called once per frame
     void Update()
@@ -24,6 +24,15 @@ public abstract class ShipSystem : BGComponent
 
 	public override void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab, GameObject imagePrefab)
 	{
+		base.Display(infoPanel, textPrefab, buttonPrefab, imagePrefab);
+	}
 
+	class Paragon : Trait
+	{
+		public Paragon()
+		{
+			traitName = "Paragon";
+			mechanicalText = MiscData.FLAK_SCREEN_TEXT;
+		}
 	}
 }

@@ -9,10 +9,11 @@ public abstract class Weapon : BGComponent
 	[SerializeField] protected uint maxRange;
 	[SerializeField] protected bool isIntegrated;
 
-	// Start is called before the first frame update
-	void Start()
+    // Start is called before the first frame update
+    protected override void Start()
     {
-
+		isIntegrated = false;
+		mechanicalText = "";
     }
 
     // Update is called once per frame
