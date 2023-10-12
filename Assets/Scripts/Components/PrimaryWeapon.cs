@@ -12,7 +12,6 @@ public abstract class PrimaryWeapon : Weapon
     protected override void Start()
     {
         base.Start();
-        isIntegrated = false;
         isSingleTarget = true;
         tags = new Dictionary<Tag, int>();
     }

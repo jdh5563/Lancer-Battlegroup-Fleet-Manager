@@ -10,6 +10,7 @@ public enum Company
     FKS,
     HA,
     IPSN,
+	SSC
 }
 
 public abstract class Ship : BGComponent
@@ -17,7 +18,6 @@ public abstract class Ship : BGComponent
     [SerializeField] protected bool isFlagship;
     [SerializeField] protected string shipName;
     [SerializeField] protected string playerDesc;
-    [SerializeField] protected Company company;
     [SerializeField] protected int hp;
     [SerializeField] protected uint defense;
     [SerializeField] protected uint auxSlots;
@@ -78,10 +78,10 @@ public abstract class Ship : BGComponent
     {
         base.Display(infoPanel, textPrefab, buttonPrefab, imagePrefab);
 
-		GameObject companyText = Instantiate(imagePrefab, infoPanel.transform);
-		companyText.GetComponent<RectTransform>().anchoredPosition = new Vector2(-260, 160);
-		companyText.GetComponent<RectTransform>().sizeDelta = new Vector2(30, 30);
-		companyText.GetComponent<RawImage>().texture = companyArt;
+		GameObject company = Instantiate(imagePrefab, infoPanel.transform);
+		company.GetComponent<RectTransform>().anchoredPosition = new Vector2(-260, 160);
+		company.GetComponent<RectTransform>().sizeDelta = new Vector2(30, 30);
+		company.GetComponent<RawImage>().texture = companyArt;
 
 		GameObject hpText = Instantiate(textPrefab, infoPanel.transform);
 		hpText.GetComponent<RectTransform>().anchoredPosition = new Vector2(160, 130);

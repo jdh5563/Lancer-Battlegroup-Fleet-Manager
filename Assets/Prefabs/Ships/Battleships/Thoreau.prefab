@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1123375268583763744}
-  - component: {fileID: 3110774975273028979}
+  - component: {fileID: 3196075994597764814}
   m_Layer: 0
   m_Name: Thoreau
   m_TagString: Untagged
@@ -30,9 +30,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3110774975273028979
+--- !u!114 &3196075994597764814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4848749784867120180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26710c4de64e4a6468611b5e392f54cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 0dc7c4c49f00b664fb5f066479b28611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   componentName: THOREAU-CLASS BATTLESHIP
@@ -50,7 +50,6 @@ MonoBehaviour:
   isFlagship: 0
   shipName: 
   playerDesc: 
-  company: 0
   hp: 25
   defense: 12
   auxSlots: 2
@@ -60,7 +59,7 @@ MonoBehaviour:
   wingSlots: 0
   escortSlots: 0
   shipArt: {fileID: 0}
-  companyArt: {fileID: 0}
+  companyArt: {fileID: 2800000, guid: 539e7d0d16d8bad4eb9eaebdad8ca35e, type: 3}
   auxWeapons: []
   primWeapons: []
   sHeavyWeapons: []

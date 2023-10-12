@@ -16,6 +16,16 @@ MonoBehaviour:
   - {fileID: 9114558274593343278, guid: 62e88ffe66a83ba47b5199a874f9ffa8, type: 3}
   - {fileID: 1681550486978948760, guid: b47dd05b7655b434383681608d936803, type: 3}
   - {fileID: 1533551951361156284, guid: 24e1f40736ee06449b085f4fa5096e6b, type: 3}
-  carriers: []
-  battleships: []
+  - {fileID: 2616739117681121601, guid: 5ba970c5a408a3a4db3d3e2984312a3e, type: 3}
+  carriers:
+  - {fileID: 8836301450758729843, guid: 8863f07da7d3c624798a17221dad2275, type: 3}
+  - {fileID: 3076003395182526443, guid: 6f1d40d33fa0343419493d32e571c93c, type: 3}
+  battleships:
+  - {fileID: 7348283575712782065, guid: 9bb5cc4701aa22b4e901ec9c67657937, type: 3}
+  - {fileID: 3196075994597764814, guid: 82bebe2fcb84aa7429fd9fef879413d1, type: 3}
   systems: []
+  auxWeapons: []
+  primWeapons: []
+  sHeavyWeapons: []
+  wings: []
+  escorts: []

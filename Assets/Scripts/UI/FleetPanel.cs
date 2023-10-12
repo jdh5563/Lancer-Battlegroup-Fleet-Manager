@@ -7,17 +7,30 @@ using UnityEngine.UI;
 public class FleetPanel : MonoBehaviour
 {
     [SerializeField] private Texture2D baseImage;
-	private string baseText = "No Ship Purchased";
 
-	[SerializeField] private List<GameObject> buttons;
+    [SerializeField] private Button[] buttons;
 
-    private int currentIndex = 0;
+    [SerializeField] private GameObject purchasePanel;
+    [SerializeField] private GameObject shipDetailsPanel;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
+		for (int i = 0; i < 3; i++)
+		{
+			buttons[i].onClick.AddListener(() => purchasePanel.GetComponent<PurchasePanel>().DisplaySidebar("Frigate"));
+			buttons[i].onClick.AddListener(TogglePurchasePanel);
+		}
+
+		for (int i = 3; i < 5; i++)
+		{
+			buttons[i].onClick.AddListener(() => purchasePanel.GetComponent<PurchasePanel>().DisplaySidebar("Carrier"));
+			buttons[i].onClick.AddListener(TogglePurchasePanel);
+		}
+
+		buttons[5].onClick.AddListener(() => purchasePanel.GetComponent<PurchasePanel>().DisplaySidebar("Battleship"));
+		buttons[5].onClick.AddListener(TogglePurchasePanel);
+	}
 
     // Update is called once per frame
     void Update()
@@ -25,36 +38,51 @@ public class FleetPanel : MonoBehaviour
         
     }
 
-    public void SwitchShip(int direction)
-    {
-        buttons[currentIndex].SetActive(false);
-
-        currentIndex = (currentIndex + direction) % buttons.Count;
-        if(currentIndex < 0) currentIndex = buttons.Count - 1;
-
-        buttons[currentIndex].SetActive(true);
-    }
-
     public void UpdateShipView(GameObject shipToAssign)
     {
         Ship ship = shipToAssign.GetComponentInChildren<Ship>();
         RawImage shipArt = shipToAssign.GetComponentInChildren<RawImage>();
 		shipArt.texture = ship.ShipArt;
-        shipArt.rectTransform.sizeDelta = new Vector2(100, 100 * ship.ShipArt.height / ship.ShipArt.width);
+        shipArt.rectTransform.sizeDelta = new Vector2(200, 200 * ship.ShipArt.height / ship.ShipArt.width);
 		shipToAssign.GetComponentInChildren<TMP_Text>().text = ship.ComponentName;
-		shipToAssign.transform.GetChild(1).gameObject.SetActive(false);
-		shipToAssign.transform.GetChild(2).gameObject.SetActive(true);
-		shipToAssign.transform.GetChild(3).gameObject.SetActive(true);
+        shipToAssign.transform.GetChild(shipToAssign.transform.childCount - 2).GetComponent<Button>().onClick.AddListener(() => DeleteShip(shipToAssign));
+        shipToAssign.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(ToggleShipDetailsPanel);
+        shipToAssign.transform.GetChild(1).GetComponent<Button>().onClick.RemoveListener(TogglePurchasePanel);
+	}
+
+    private void TogglePurchasePanel()
+    {
+        purchasePanel.SetActive(true);
+	}
+
+    private void ToggleShipDetailsPanel()
+    {
+        shipDetailsPanel.SetActive(true);
+
 	}
 
     public void DeleteShip(GameObject shipToDestroy)
     {
-        shipToDestroy.transform.GetComponentInChildren<TMP_Text>().text = baseText;
-        shipToDestroy.GetComponentInChildren<RawImage>().texture = baseImage;
+        int buttonIndex = shipToDestroy.transform.GetSiblingIndex();
+
+		if (buttonIndex < 3)
+        {
+			shipToDestroy.transform.GetComponentInChildren<TMP_Text>().text = "Frigate Slot";
+		}
+        else if(buttonIndex < 5)
+        {
+			shipToDestroy.transform.GetComponentInChildren<TMP_Text>().text = "Carrier Slot";
+		}
+        else
+        {
+			shipToDestroy.transform.GetComponentInChildren<TMP_Text>().text = "Battleship Slot";
+		}
+
+		shipToDestroy.transform.GetChild(1).GetComponent<Button>().onClick.RemoveListener(ToggleShipDetailsPanel);
+		shipToDestroy.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(TogglePurchasePanel);
+		shipToDestroy.GetComponentInChildren<RawImage>().texture = baseImage;
         shipToDestroy.GetComponentInChildren<RawImage>().rectTransform.sizeDelta = new Vector2(100, 100);
-		Destroy(shipToDestroy.transform.GetChild(shipToDestroy.transform.childCount - 1).gameObject);
-		shipToDestroy.transform.GetChild(1).gameObject.SetActive(true);
-		shipToDestroy.transform.GetChild(2).gameObject.SetActive(false);
-		shipToDestroy.transform.GetChild(3).gameObject.SetActive(false);
+        bool shipExists = shipToDestroy.transform.GetChild(shipToDestroy.transform.childCount - 1).TryGetComponent(out Ship ship);
+		if(shipExists) Destroy(ship.gameObject);
 	}
 }

@@ -42,7 +42,8 @@ public class PurchasePanel : MonoBehaviour
     private void GenerateButton(BGComponent component)
     {
 		GameObject buttonObj = Instantiate(buttonPrefab);
-		buttonObj.GetComponentInChildren<TMP_Text>().text = component.ComponentName;
+        int hyphenIndex = component.ComponentName.IndexOf("-");
+		buttonObj.GetComponentInChildren<TMP_Text>().text = component.ComponentName.Substring(0, hyphenIndex);
 		buttonObj.GetComponent<Button>().onClick.AddListener(() => { DisplayInfo(component); });
 		buttonObj.transform.SetParent(content.transform, false);
 	}
