@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Creighton : Ship
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
 		flavorText = MiscData.HURON_FLAVOR;
+		traits.Add(new PurposeBuilt());
+		traits.Add(new Calibrated());
 	}
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-		traits.Add(new PurposeBuilt());
-        traits.Add(new Calibrated());
 	}
 
     // Update is called once per frame

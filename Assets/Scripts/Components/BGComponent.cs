@@ -31,6 +31,11 @@ public abstract class BGComponent : MonoBehaviour
         get { return componentName; }
     }
 
+	protected virtual void Awake()
+	{
+
+	}
+
 	// Start is called before the first frame update
 	protected virtual void Start()
     {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+using static System.Net.Mime.MediaTypeNames;
 
 public enum Company
 {
@@ -40,23 +42,14 @@ public abstract class Ship : BGComponent
     [SerializeField] protected List<Action> actions;
 
 	private int slotNum = 0;
-	private int x = -195;
+	private int x = -185;
 	private int y = 85;
 
 	public Texture2D ShipArt { get { return shipArt; } }
 
-    // Start is called before the first frame update
-    protected override void Start()
+    protected override void Awake()
     {
-		isFlagship = false;
-		shipName = null;
-		playerDesc = null;
-		auxSlots = 0;
-		primSlots = 0;
-		sHeavySlots = 0;
-		systemSlots = 0;
-		wingSlots = 0;
-		escortSlots = 0;
+		base.Awake();
         auxWeapons = new List<AuxiliaryWeapon>();
 		primWeapons = new List<PrimaryWeapon>();
         sHeavyWeapons = new List<SuperHeavyWeapon>();
@@ -68,8 +61,23 @@ public abstract class Ship : BGComponent
 		actions = new List<Action>();
 	}
 
-    // Update is called once per frame
-    void Update()
+	// Start is called before the first frame update
+	protected override void Start()
+	{
+		base.Start();
+		isFlagship = false;
+		shipName = null;
+		playerDesc = null;
+		auxSlots = 0;
+		primSlots = 0;
+		sHeavySlots = 0;
+		systemSlots = 0;
+		wingSlots = 0;
+		escortSlots = 0;
+	}
+
+	// Update is called once per frame
+	void Update()
     {
         
     }
@@ -99,13 +107,15 @@ public abstract class Ship : BGComponent
 		if (systemSlots > 0) GenerateSlotText(infoPanel, textPrefab, systemSlots, "System");
 		if (wingSlots > 0) GenerateSlotText(infoPanel, textPrefab, wingSlots, "Wing");
 		if (escortSlots > 0) GenerateSlotText(infoPanel, textPrefab, escortSlots, "Escort");
+
+		GenerateTraitText(infoPanel, textPrefab);
 	}
 
 	private void GenerateSlotText(GameObject infoPanel, GameObject textPrefab, uint slots, string text)
 	{
 		GameObject button = Instantiate(textPrefab, infoPanel.transform);
 		button.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
-		button.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 40);
+		button.GetComponent<RectTransform>().sizeDelta = new Vector2(170, 40);
 		button.GetComponentInChildren<TMP_Text>().text = text + " Slots: " + slots;
 
 		slotNum++;
@@ -113,7 +123,30 @@ public abstract class Ship : BGComponent
 		if (slotNum % 3 == 0)
 		{
 			x = -195;
-			y += 40;
+			y -= 40;
 		}
+	}
+
+	private void GenerateTraitText(GameObject infoPanel, GameObject textPrefab)
+	{
+		//x = -170;
+		//y -= 45;
+
+		//foreach (Trait trait in traits)
+		//{
+		//	GameObject title = Instantiate(textPrefab, infoPanel.transform);
+		//	title.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
+		//	title.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 25);
+		//	title.GetComponent<TMP_Text>().text = trait.TraitName;
+
+		//	GameObject mechText = Instantiate(textPrefab, infoPanel.transform);
+		//	ContentSizeFitter csf = mechText.AddComponent<ContentSizeFitter>();
+		//	csf.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+		//	mechText.GetComponent<TMP_Text>().text = trait.MechanicalText;
+		//	mechText.GetComponent<TMP_Text>().enableAutoSizing = false;
+		//	mechText.GetComponent<TMP_Text>().fontSize = 12;
+		//	mechText.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y - (title.GetComponent<RectTransform>().sizeDelta.y + mechText.GetComponent<RectTransform>().sizeDelta.y) / 2);
+		//	mechText.GetComponent<RectTransform>().sizeDelta = new Vector2(200, mechText.GetComponent<RectTransform>().sizeDelta.y);
+		//}
 	}
 }

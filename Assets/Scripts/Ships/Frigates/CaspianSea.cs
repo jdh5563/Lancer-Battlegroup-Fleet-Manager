@@ -6,16 +6,17 @@ using UnityEngine.UI;
 
 public class CaspianSea : Ship
 {
-	private void Awake()
+	protected override void Awake()
 	{
+		base.Awake();
 		flavorText = MiscData.CASPIAN_FLAVOR;
+		traits.Add(new FireControlNetworking());
 	}
 
 	// Start is called before the first frame update
 	protected override void Start()
     {
         base.Start();
-		traits.Add(new FireControlNetworking());
 	}
 
     // Update is called once per frame

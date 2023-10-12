@@ -8,6 +8,16 @@ public abstract class Trait
     protected string traitName;
     protected string mechanicalText;
 
+    public string TraitName
+    {
+        get { return traitName; }
+    }
+
+    public string MechanicalText
+    {
+        get { return mechanicalText; }
+    }
+
     public virtual void Display()
     {
 

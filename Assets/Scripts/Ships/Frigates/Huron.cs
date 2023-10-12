@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Huron : Ship
 {
-	private void Awake()
+	protected override void Awake()
 	{
+		base.Awake();
 		flavorText = MiscData.HURON_FLAVOR;
+		traits.Add(new FlakScreen());
 	}
 
 	// Start is called before the first frame update
 	protected override void Start()
     {
         base.Start();
-		traits.Add(new FlakScreen());
 	}
 
     // Update is called once per frame
