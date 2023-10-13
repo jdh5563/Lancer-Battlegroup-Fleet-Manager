@@ -15,6 +15,7 @@ public class PurchasePanel : MonoBehaviour
 	[SerializeField] private GameObject sidePanel;
 	[SerializeField] private GameObject infoPanel;
     [SerializeField] private GameObject content;
+    [SerializeField] private GameObject purchaseButton;
 
     [SerializeField] private GameObject textPrefab;
     [SerializeField] private GameObject buttonPrefab;
@@ -51,7 +52,7 @@ public class PurchasePanel : MonoBehaviour
 	public void DisplaySidebar(string componentType)
     {
         selectedButton = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
-        infoPanel.GetComponentInChildren<Button>().onClick.AddListener(() => selectedButton.transform.GetComponentInParent<FleetPanel>().UpdateShipView(selectedButton));
+        purchaseButton.GetComponent<Button>().onClick.AddListener(() => selectedButton.transform.GetComponentInParent<FleetPanel>().UpdateShipView(selectedButton));
 
         header.GetComponentInChildren<TMP_Text>().text = componentType;
 
@@ -60,7 +61,7 @@ public class PurchasePanel : MonoBehaviour
             Destroy(content.transform.GetChild(i).gameObject);
         }
 
-		for (int i = 1; i < infoPanel.transform.childCount; i++)
+		for (int i = 0; i < infoPanel.transform.childCount; i++)
 		{
 			Destroy(infoPanel.transform.GetChild(i).gameObject);
 		}
@@ -78,13 +79,32 @@ public class PurchasePanel : MonoBehaviour
     {
 		// This will build a bunch of text boxes based on
 		// the ship associated with the selected button
-        while(infoPanel.transform.childCount > 1)
+        while(infoPanel.transform.childCount > 0)
         {
-			DestroyImmediate(infoPanel.transform.GetChild(1).gameObject);
+			DestroyImmediate(infoPanel.transform.GetChild(0).gameObject);
 		}
+        infoPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(infoPanel.GetComponent<RectTransform>().sizeDelta.x, 360);
 
         currentComponent = Instantiate(component.gameObject, infoPanel.transform).GetComponent<BGComponent>();
         currentComponent.Display(infoPanel, textPrefab, buttonPrefab, imagePrefab);
+
+        int originalParentCount = infoPanel.transform.parent.childCount;
+        int originalChildCount = infoPanel.transform.childCount;
+        RectTransform lowestElement = infoPanel.transform.GetChild(3).GetComponent<RectTransform>();
+        float lowestY = lowestElement.anchoredPosition.y;
+
+        while(infoPanel.transform.childCount > 0)
+        {
+            infoPanel.transform.GetChild(0).SetParent(infoPanel.transform.parent);
+        }
+
+        infoPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(infoPanel.GetComponent<RectTransform>().sizeDelta.x, infoPanel.GetComponent<RectTransform>().sizeDelta.y + Mathf.Abs(lowestY + lowestElement.sizeDelta.y / 2));
+
+        int elementIndex = infoPanel.transform.parent.childCount - originalChildCount;
+		while (infoPanel.transform.parent.childCount > originalParentCount)
+        {
+            infoPanel.transform.parent.GetChild(elementIndex).SetParent(infoPanel.transform);
+        }
 	}
 
     public void Purchase()

@@ -112,8 +112,8 @@ public abstract class Ship : BGComponent
 		GenerateTraitText(infoPanel, textPrefab);
 
 		x = -170;
-		y -= longestText + infoPanel.transform.GetChild(4).GetComponent<RectTransform>().sizeDelta.y / 2;
-		infoPanel.transform.GetChild(4).GetComponent<RectTransform>().anchoredPosition = new Vector2(-90, y);
+		y -= longestText + infoPanel.transform.GetChild(3).GetComponent<RectTransform>().sizeDelta.y / 2;
+		infoPanel.transform.GetChild(3).GetComponent<RectTransform>().anchoredPosition = new Vector2(-90, y);
 	}
 
 	private void GenerateSlotText(GameObject infoPanel, GameObject textPrefab, uint slots, string text)

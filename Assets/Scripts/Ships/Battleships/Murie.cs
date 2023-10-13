@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Murie : Ship
 {
-    private void Awake()
+    protected override void Awake()
     {
+		base.Awake();
 		flavorText = MiscData.HURON_FLAVOR;
         traits.Add(new Paragon());
     }
