@@ -13,10 +13,18 @@ MonoBehaviour:
   m_Name: MasterLists
   m_EditorClassIdentifier: 
   frigates:
+  - {fileID: 1953312131939980983, guid: 66bc654236f8a6b46870a9dfccca629c, type: 3}
+  - {fileID: 2919526775376982008, guid: 2a8694a2dfe7425479c8776ece763e9e, type: 3}
   - {fileID: 9114558274593343278, guid: 62e88ffe66a83ba47b5199a874f9ffa8, type: 3}
   - {fileID: 1681550486978948760, guid: b47dd05b7655b434383681608d936803, type: 3}
   - {fileID: 1533551951361156284, guid: 24e1f40736ee06449b085f4fa5096e6b, type: 3}
   - {fileID: 2616739117681121601, guid: 5ba970c5a408a3a4db3d3e2984312a3e, type: 3}
+  - {fileID: 3541650302864708095, guid: bb34bf2119d45e34eb9cac87a57f3fb5, type: 3}
+  - {fileID: 708647512697295969, guid: 48b74db0dc986fd4b8916b6fc4112c50, type: 3}
+  - {fileID: 2203564860048520391, guid: 5031780513da8a140a910435cea25b59, type: 3}
+  - {fileID: 964355013251030920, guid: 85a723c0f363beb4dbaaf7b7cea6ab2a, type: 3}
+  - {fileID: 9060476672003770266, guid: 738d465bff3fb8e41ba471322d9e9bc3, type: 3}
+  - {fileID: 582141140282286476, guid: 033a637f9dfec6d4799588ff68d42735, type: 3}
   carriers:
   - {fileID: 8836301450758729843, guid: 8863f07da7d3c624798a17221dad2275, type: 3}
   - {fileID: 3076003395182526443, guid: 6f1d40d33fa0343419493d32e571c93c, type: 3}

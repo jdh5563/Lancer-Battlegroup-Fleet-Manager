@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1363182336375344617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8316734824437916363}
+  - component: {fileID: 708647512697295969}
+  m_Layer: 0
+  m_Name: Turenne
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8316734824437916363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363182336375344617}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 90}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &708647512697295969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363182336375344617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608d8d89b92aac3418800f7acc6ea99e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: TURENNE-CLASS FRIGATE
+  flavorText: 
+  pointCost: 4
+  isFlagship: 0
+  shipName: 
+  playerDesc: 
+  hp: 14
+  defense: 12
+  auxSlots: 2
+  primSlots: 0
+  sHeavySlots: 0
+  systemSlots: 1
+  wingSlots: 0
+  escortSlots: 0
+  shipArt: {fileID: 0}
+  companyArt: {fileID: 2800000, guid: ba9c091b0ab429548a81b80e24c16bc7, type: 3}
+  auxWeapons: []
+  primWeapons: []
+  sHeavyWeapons: []
+  systems: []
+  wings: []
+  escorts: []
+  legacies: []
