@@ -31,15 +31,15 @@ public abstract class Ship : BGComponent
     [SerializeField] protected Texture2D shipArt;
 	[SerializeField] protected Texture2D companyArt;
 
-	[SerializeField] protected List<AuxiliaryWeapon> auxWeapons;
-	[SerializeField] protected List<PrimaryWeapon> primWeapons;
-	[SerializeField] protected List<SuperHeavyWeapon> sHeavyWeapons;
-    [SerializeField] protected List<ShipSystem> systems;
-    [SerializeField] protected List<Subline> wings;
-    [SerializeField] protected List<Subline> escorts;
-    [SerializeField] protected List<Legacy> legacies;
-    [SerializeField] protected List<Trait> traits;
-    [SerializeField] protected List<Action> actions;
+	[SerializeField] protected List<AuxiliaryWeapon> auxWeapons = new List<AuxiliaryWeapon>();
+	[SerializeField] protected List<PrimaryWeapon> primWeapons = new List<PrimaryWeapon>();
+	[SerializeField] protected List<SuperHeavyWeapon> sHeavyWeapons = new List<SuperHeavyWeapon>();
+    [SerializeField] protected List<ShipSystem> systems = new List<ShipSystem>();
+    [SerializeField] protected List<Subline> wings = new List<Subline>();
+    [SerializeField] protected List<Subline> escorts = new List<Subline>();
+    [SerializeField] protected List<Legacy> legacies = new List<Legacy>();
+    [SerializeField] protected List<Trait> traits = new List<Trait>();
+    [SerializeField] protected List<Action> actions = new List<Action>();
 
 	private int slotNum = 0;
 	private float x = -185;
@@ -51,15 +51,6 @@ public abstract class Ship : BGComponent
     protected override void Awake()
     {
 		base.Awake();
-        auxWeapons = new List<AuxiliaryWeapon>();
-		primWeapons = new List<PrimaryWeapon>();
-        sHeavyWeapons = new List<SuperHeavyWeapon>();
-		systems = new List<ShipSystem>();
-		wings = new List<Subline>();
-		escorts = new List<Subline>();
-		legacies = new List<Legacy>();
-		traits = new List<Trait>();
-		actions = new List<Action>();
 	}
 
 	// Start is called before the first frame update
