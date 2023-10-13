@@ -42,8 +42,9 @@ public abstract class Ship : BGComponent
     [SerializeField] protected List<Action> actions;
 
 	private int slotNum = 0;
-	private int x = -185;
-	private int y = 85;
+	private float x = -185;
+	private float y = 85;
+	private float longestText = 0f;
 
 	public Texture2D ShipArt { get { return shipArt; } }
 
@@ -109,6 +110,10 @@ public abstract class Ship : BGComponent
 		if (escortSlots > 0) GenerateSlotText(infoPanel, textPrefab, escortSlots, "Escort");
 
 		GenerateTraitText(infoPanel, textPrefab);
+
+		x = -170;
+		y -= longestText + infoPanel.transform.GetChild(4).GetComponent<RectTransform>().sizeDelta.y / 2;
+		infoPanel.transform.GetChild(4).GetComponent<RectTransform>().anchoredPosition = new Vector2(-90, y);
 	}
 
 	private void GenerateSlotText(GameObject infoPanel, GameObject textPrefab, uint slots, string text)
@@ -129,24 +134,36 @@ public abstract class Ship : BGComponent
 
 	private void GenerateTraitText(GameObject infoPanel, GameObject textPrefab)
 	{
-		//x = -170;
-		//y -= 45;
+		x = -170;
+		y -= 45;
+		longestText = 0f;
 
-		//foreach (Trait trait in traits)
-		//{
-		//	GameObject title = Instantiate(textPrefab, infoPanel.transform);
-		//	title.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
-		//	title.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 25);
-		//	title.GetComponent<TMP_Text>().text = trait.TraitName;
+		for(int i = 0; i < traits.Count; i++)
+		{
+			if (i != 0 && i % 2 == 0)
+			{
+				x = -170;
+				y -= longestText;
+				longestText = 0f;
+			}
 
-		//	GameObject mechText = Instantiate(textPrefab, infoPanel.transform);
-		//	ContentSizeFitter csf = mechText.AddComponent<ContentSizeFitter>();
-		//	csf.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-		//	mechText.GetComponent<TMP_Text>().text = trait.MechanicalText;
-		//	mechText.GetComponent<TMP_Text>().enableAutoSizing = false;
-		//	mechText.GetComponent<TMP_Text>().fontSize = 12;
-		//	mechText.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y - (title.GetComponent<RectTransform>().sizeDelta.y + mechText.GetComponent<RectTransform>().sizeDelta.y) / 2);
-		//	mechText.GetComponent<RectTransform>().sizeDelta = new Vector2(200, mechText.GetComponent<RectTransform>().sizeDelta.y);
-		//}
+			GameObject title = Instantiate(textPrefab, infoPanel.transform);
+			title.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
+			title.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 25);
+			title.GetComponent<TMP_Text>().text = traits[i].TraitName;
+
+			GameObject mechText = Instantiate(textPrefab, infoPanel.transform);
+			ContentSizeFitter csf = mechText.AddComponent<ContentSizeFitter>();
+			csf.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+			mechText.GetComponent<TMP_Text>().text = traits[i].MechanicalText;
+			mechText.GetComponent<TMP_Text>().enableAutoSizing = false;
+			mechText.GetComponent<TMP_Text>().fontSize = 12;
+			Canvas.ForceUpdateCanvases();
+			mechText.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y - (title.GetComponent<RectTransform>().sizeDelta.y + mechText.GetComponent<RectTransform>().sizeDelta.y) / 2);
+
+			if (mechText.GetComponent<RectTransform>().sizeDelta.y > longestText) longestText = title.GetComponent<RectTransform>().sizeDelta.y + mechText.GetComponent<RectTransform>().sizeDelta.y;
+
+			x += 210;
+		}
 	}
 }

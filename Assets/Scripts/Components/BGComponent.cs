@@ -61,7 +61,6 @@ public abstract class BGComponent : MonoBehaviour
 		pointText.GetComponent<TMP_Text>().text = "Point Cost: " + pointCost.ToString();
 
 		GameObject flavText = Instantiate(textPrefab, infoPanel.transform);
-		flavText.GetComponent<RectTransform>().anchoredPosition = new Vector2(-90, -70);
 		flavText.GetComponent<RectTransform>().sizeDelta = new Vector2(360, 180);
 		flavText.GetComponent<TMP_Text>().text = flavorText;
 	}

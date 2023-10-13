@@ -78,10 +78,10 @@ public class PurchasePanel : MonoBehaviour
     {
 		// This will build a bunch of text boxes based on
 		// the ship associated with the selected button
-		for (int i = 1; i < infoPanel.transform.childCount; i++)
+        while(infoPanel.transform.childCount > 1)
         {
-            Destroy(infoPanel.transform.GetChild(i).gameObject);
-        }
+			DestroyImmediate(infoPanel.transform.GetChild(1).gameObject);
+		}
 
         currentComponent = Instantiate(component.gameObject, infoPanel.transform).GetComponent<BGComponent>();
         currentComponent.Display(infoPanel, textPrefab, buttonPrefab, imagePrefab);
