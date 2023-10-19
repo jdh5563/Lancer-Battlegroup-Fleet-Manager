@@ -16,6 +16,7 @@ public class PurchasePanel : MonoBehaviour
 	[SerializeField] private GameObject infoPanel;
     [SerializeField] private GameObject content;
     [SerializeField] private GameObject purchaseButton;
+    [SerializeField] private GameObject backButton;
 
     [SerializeField] private GameObject textPrefab;
     [SerializeField] private GameObject buttonPrefab;
@@ -31,7 +32,7 @@ public class PurchasePanel : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-
+        backButton.GetComponent<Button>().onClick.AddListener(() => purchaseButton.GetComponent<Button>().onClick.RemoveListener(CallUpdateShipView));
     }
 
     // Update is called once per frame
@@ -57,9 +58,8 @@ public class PurchasePanel : MonoBehaviour
 	public void DisplaySidebar(string componentType)
     {
         selectedButton = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
-        purchaseButton.GetComponent<Button>().onClick.AddListener(() => selectedButton.transform.GetComponentInParent<FleetPanel>().UpdateShipView(selectedButton));
-
-        header.GetComponentInChildren<TMP_Text>().text = componentType;
+		purchaseButton.GetComponent<Button>().onClick.AddListener(CallUpdateShipView);
+		header.GetComponentInChildren<TMP_Text>().text = componentType;
 
         for(int i = 0; i < content.transform.childCount; i++)
         {
@@ -118,5 +118,11 @@ public class PurchasePanel : MonoBehaviour
         if (selectedButton.transform.GetChild(selectedButton.transform.childCount - 1).TryGetComponent(out BGComponent ship)) DestroyImmediate(ship.gameObject);
         currentComponent.transform.SetParent(selectedButton.transform, false);
         currentComponent = null;
-    }
+		purchaseButton.GetComponent<Button>().onClick.RemoveListener(CallUpdateShipView);
+	}
+
+    private void CallUpdateShipView()
+    {
+        selectedButton.GetComponentInParent<FleetPanel>().UpdateShipView(selectedButton);
+	}
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class FleetPanel : MonoBehaviour
@@ -45,7 +46,7 @@ public class FleetPanel : MonoBehaviour
 		shipArt.texture = ship.ShipArt;
         shipArt.rectTransform.sizeDelta = new Vector2(200, 200 * ship.ShipArt.height / ship.ShipArt.width);
 		shipToAssign.GetComponentInChildren<TMP_Text>().text = ship.ComponentName;
-        shipToAssign.transform.GetChild(shipToAssign.transform.childCount - 2).GetComponent<Button>().onClick.AddListener(() => DeleteShip(shipToAssign));
+        shipToAssign.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => DeleteShip(shipToAssign));
         shipToAssign.transform.GetChild(1).GetComponent<Button>().onClick.AddListener(ToggleShipDetailsPanel);
         shipToAssign.transform.GetChild(1).GetComponent<Button>().onClick.RemoveListener(TogglePurchasePanel);
 	}
@@ -57,8 +58,15 @@ public class FleetPanel : MonoBehaviour
 
     private void ToggleShipDetailsPanel()
     {
-        shipDetailsPanel.SetActive(true);
+        if (!shipDetailsPanel.activeSelf)
+        {
+            shipDetailsPanel.SetActive(true);
 
+            GameObject selectedButton = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
+            GameObject shownShip = selectedButton.transform.GetChild(selectedButton.transform.childCount - 1).gameObject;
+            shownShip.transform.SetParent(shipDetailsPanel.transform, false);
+            shipDetailsPanel.GetComponent<ShipDetailsPanel>().Display(selectedButton, shownShip);
+        }
 	}
 
     public void DeleteShip(GameObject shipToDestroy)
