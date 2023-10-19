@@ -154,6 +154,12 @@ public abstract class Ship : BGComponent
 			traitText.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 15);
 			traitText.GetComponent<TMP_Text>().text = "Trait";
 
+			if (this is Houston)
+			{
+				Houston ship = (Houston)this;
+				ship.AddTraitTag(traitText);
+			}
+
 			GameObject mechText = Instantiate(textPrefab, infoPanel.transform);
 			ContentSizeFitter csf = mechText.AddComponent<ContentSizeFitter>();
 			csf.verticalFit = ContentSizeFitter.FitMode.PreferredSize;

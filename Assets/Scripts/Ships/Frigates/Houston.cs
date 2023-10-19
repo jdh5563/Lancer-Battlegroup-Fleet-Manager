@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Houston : Ship
@@ -28,12 +30,29 @@ public class Houston : Ship
 		base.Display(infoPanel, textPrefab, buttonPrefab, imagePrefab);
 	}
 
+	public void AddTraitTag(GameObject text)
+	{
+		EnhancedLogistics trait = (EnhancedLogistics)traits[0];
+		trait.AddTag(text);
+	}
+
 	class EnhancedLogistics : Trait
 	{
+		public Tuple<Tag, int> TraitTag
+		{
+			get; private set;
+		}
+
 		public EnhancedLogistics()
 		{
 			traitName = "Enhanced Logistics";
 			mechanicalText = MiscData.HURON_FLAVOR;
+			TraitTag = new Tuple<Tag, int>(Tag.Limited, 2);
+		}
+
+		public void AddTag(GameObject text)
+		{
+			text.GetComponent<TMP_Text>().text += ", " + TraitTag.Item1.ToString() + " " + TraitTag.Item2.ToString();
 		}
 	}
 }
