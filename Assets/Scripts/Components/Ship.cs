@@ -42,7 +42,7 @@ public abstract class Ship : BGComponent
     [SerializeField] protected List<Action> actions = new List<Action>();
 
 	private int slotNum = 0;
-	private float x = -185;
+	private float x = -175;
 	private float y = 85;
 	private float longestText = 0f;
 
@@ -79,7 +79,7 @@ public abstract class Ship : BGComponent
         base.Display(infoPanel, textPrefab, buttonPrefab, imagePrefab);
 
 		GameObject company = Instantiate(imagePrefab, infoPanel.transform);
-		company.GetComponent<RectTransform>().anchoredPosition = new Vector2(-260, 160);
+		company.GetComponent<RectTransform>().anchoredPosition = new Vector2(-250, 160);
 		company.GetComponent<RectTransform>().sizeDelta = new Vector2(30, 30);
 		company.GetComponent<RawImage>().texture = companyArt;
 
@@ -89,7 +89,7 @@ public abstract class Ship : BGComponent
 		hpText.GetComponent<TMP_Text>().text = "HP: " + hp.ToString();
 
 		GameObject defenseText = Instantiate(textPrefab, infoPanel.transform);
-		defenseText.GetComponent<RectTransform>().anchoredPosition = new Vector2(240, 130);
+		defenseText.GetComponent<RectTransform>().anchoredPosition = new Vector2(230, 130);
 		defenseText.GetComponent<RectTransform>().sizeDelta = new Vector2(60, 20);
 		defenseText.GetComponent<TMP_Text>().text = "Def: " + defense.ToString();
 
@@ -100,11 +100,13 @@ public abstract class Ship : BGComponent
 		if (wingSlots > 0) GenerateSlotText(infoPanel, textPrefab, wingSlots, "Wing");
 		if (escortSlots > 0) GenerateSlotText(infoPanel, textPrefab, escortSlots, "Escort");
 
-		GenerateTraitText(infoPanel, textPrefab);
+		if (slotNum % 2 == 0) y += 40;
 
-		x = -170;
-		y -= longestText + infoPanel.transform.GetChild(3).GetComponent<RectTransform>().sizeDelta.y / 2;
-		infoPanel.transform.GetChild(3).GetComponent<RectTransform>().anchoredPosition = new Vector2(-90, y);
+		if(traits.Count > 0) GenerateTraitText(infoPanel, textPrefab);
+		if(actions.Count > 0) GenerateActionText(infoPanel, textPrefab);
+
+		y -= 25 + infoPanel.transform.GetChild(3).GetComponent<RectTransform>().sizeDelta.y / 2;
+		infoPanel.transform.GetChild(3).GetComponent<RectTransform>().anchoredPosition = new Vector2(-80, y);
 	}
 
 	private void GenerateSlotText(GameObject infoPanel, GameObject textPrefab, uint slots, string text)
@@ -116,32 +118,41 @@ public abstract class Ship : BGComponent
 
 		slotNum++;
 		x += 195;
-		if (slotNum % 3 == 0)
+		if (slotNum % 2 == 0)
 		{
-			x = -195;
+			x = -175;
 			y -= 40;
 		}
 	}
 
 	private void GenerateTraitText(GameObject infoPanel, GameObject textPrefab)
 	{
-		x = -170;
+		x = -160;
 		y -= 45;
 		longestText = 0f;
+		float originalY = y;
 
 		for(int i = 0; i < traits.Count; i++)
 		{
 			if (i != 0 && i % 2 == 0)
 			{
-				x = -170;
+				x = -160;
 				y -= longestText;
 				longestText = 0f;
+				originalY = y;
 			}
 
 			GameObject title = Instantiate(textPrefab, infoPanel.transform);
 			title.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
 			title.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 25);
 			title.GetComponent<TMP_Text>().text = traits[i].TraitName;
+
+			y -= title.GetComponent<RectTransform>().sizeDelta.y / 1.5f;
+
+			GameObject traitText = Instantiate(textPrefab, infoPanel.transform);
+			traitText.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
+			traitText.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 15);
+			traitText.GetComponent<TMP_Text>().text = "Trait";
 
 			GameObject mechText = Instantiate(textPrefab, infoPanel.transform);
 			ContentSizeFitter csf = mechText.AddComponent<ContentSizeFitter>();
@@ -150,11 +161,66 @@ public abstract class Ship : BGComponent
 			mechText.GetComponent<TMP_Text>().enableAutoSizing = false;
 			mechText.GetComponent<TMP_Text>().fontSize = 12;
 			Canvas.ForceUpdateCanvases();
-			mechText.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y - (title.GetComponent<RectTransform>().sizeDelta.y + mechText.GetComponent<RectTransform>().sizeDelta.y) / 2);
+			y -= (title.GetComponent<RectTransform>().sizeDelta.y + mechText.GetComponent<RectTransform>().sizeDelta.y) / 2;
+			mechText.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
 
 			if (mechText.GetComponent<RectTransform>().sizeDelta.y > longestText) longestText = title.GetComponent<RectTransform>().sizeDelta.y + mechText.GetComponent<RectTransform>().sizeDelta.y;
 
 			x += 210;
+			y = originalY;
 		}
+
+		y -= longestText;
+	}
+
+	private void GenerateActionText(GameObject infoPanel, GameObject textPrefab)
+	{
+		x = -160;
+		y -= 45;
+		float originalY = y;
+
+		for (int i = 0; i < actions.Count; i++)
+		{
+			if (i != 0 && i % 2 == 0)
+			{
+				x = -160;
+				y -= longestText;
+				longestText = 0f;
+				originalY = y;
+			}
+
+			GameObject title = Instantiate(textPrefab, infoPanel.transform);
+			title.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
+			title.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 25);
+			title.GetComponent<TMP_Text>().text = actions[i].ActionName;
+
+			y -= title.GetComponent<RectTransform>().sizeDelta.y / 1.5f;
+
+			GameObject actionText = Instantiate(textPrefab, infoPanel.transform);
+			actionText.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
+			actionText.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 15);
+			actionText.GetComponent<TMP_Text>().text = actions[i].IsTactic ? "Tactic" : "Maneuver";
+			foreach(Tag tag in actions[i].Tags.Keys)
+			{
+				actionText.GetComponent<TMP_Text>().text += ", " + tag.ToString() + " " + actions[i].Tags[tag].ToString();
+			}
+
+			GameObject mechText = Instantiate(textPrefab, infoPanel.transform);
+			ContentSizeFitter csf = mechText.AddComponent<ContentSizeFitter>();
+			csf.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+			mechText.GetComponent<TMP_Text>().text = actions[i].MechanicalText;
+			mechText.GetComponent<TMP_Text>().enableAutoSizing = false;
+			mechText.GetComponent<TMP_Text>().fontSize = 12;
+			Canvas.ForceUpdateCanvases();
+			y -= (title.GetComponent<RectTransform>().sizeDelta.y + mechText.GetComponent<RectTransform>().sizeDelta.y) / 2;
+			mechText.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
+
+			if (mechText.GetComponent<RectTransform>().sizeDelta.y > longestText) longestText = title.GetComponent<RectTransform>().sizeDelta.y + mechText.GetComponent<RectTransform>().sizeDelta.y;
+
+			x += 210;
+			y = originalY;
+		}
+
+		y -= longestText;
 	}
 }

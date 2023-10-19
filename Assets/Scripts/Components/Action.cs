@@ -11,6 +11,36 @@ public abstract class Action
     protected uint maxRange;
     protected Dictionary<Tag, int> tags;
 
+    public string ActionName
+    {
+        get { return actionName; }
+    }
+
+    public string MechanicalText
+    {
+        get { return mechanicalText; }
+    }
+
+    public bool IsTactic
+    {
+        get { return isTactic; }
+    }
+
+    public uint MinRange
+    {
+        get { return minRange; }
+    }
+
+    public uint MaxRange
+    {
+        get { return maxRange; }
+    }
+
+    public Dictionary<Tag, int> Tags
+    {
+        get { return tags; }
+    }
+
     public Action()
     {
         isTactic = true;

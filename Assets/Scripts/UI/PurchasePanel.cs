@@ -40,7 +40,12 @@ public class PurchasePanel : MonoBehaviour
         
     }
 
-    private void GenerateButton(BGComponent component)
+	private void OnEnable()
+	{
+		sidePanel.transform.GetChild(2).GetComponent<Scrollbar>().value = 1;
+	}
+
+	private void GenerateButton(BGComponent component)
     {
 		GameObject buttonObj = Instantiate(buttonPrefab);
         int hyphenIndex = component.ComponentName.IndexOf("-");
@@ -73,7 +78,7 @@ public class PurchasePanel : MonoBehaviour
         {
             GenerateButton(component);
         }
-    }
+	}
 
     public void DisplayInfo(BGComponent component)
     {
@@ -84,8 +89,9 @@ public class PurchasePanel : MonoBehaviour
 			DestroyImmediate(infoPanel.transform.GetChild(0).gameObject);
 		}
         infoPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(infoPanel.GetComponent<RectTransform>().sizeDelta.x, 360);
+        infoPanel.transform.parent.parent.GetChild(2).GetComponent<Scrollbar>().value = 1;
 
-        currentComponent = Instantiate(component.gameObject, infoPanel.transform).GetComponent<BGComponent>();
+		currentComponent = Instantiate(component.gameObject, infoPanel.transform).GetComponent<BGComponent>();
         currentComponent.Display(infoPanel, textPrefab, buttonPrefab, imagePrefab);
 
         int originalParentCount = infoPanel.transform.parent.childCount;

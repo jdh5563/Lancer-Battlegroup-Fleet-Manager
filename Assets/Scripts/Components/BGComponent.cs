@@ -51,12 +51,12 @@ public abstract class BGComponent : MonoBehaviour
     public virtual void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab, GameObject imagePrefab)
     {
 		GameObject nameText = Instantiate(textPrefab, infoPanel.transform);
-		nameText.GetComponent<RectTransform>().anchoredPosition = new Vector2(-50, 160);
+		nameText.GetComponent<RectTransform>().anchoredPosition = new Vector2(-40, 160);
 		nameText.GetComponent<RectTransform>().sizeDelta = new Vector2(375, 25);
 		nameText.GetComponent<TMP_Text>().text = componentName;
 
 		GameObject pointText = Instantiate(textPrefab, infoPanel.transform);
-		pointText.GetComponent<RectTransform>().anchoredPosition = new Vector2(210, 160);
+		pointText.GetComponent<RectTransform>().anchoredPosition = new Vector2(200, 160);
 		pointText.GetComponent<RectTransform>().sizeDelta = new Vector2(140, 25);
 		pointText.GetComponent<TMP_Text>().text = "Point Cost: " + pointCost.ToString();
 
