@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -78,6 +79,8 @@ public abstract class Ship : BGComponent
     {
         base.Display(infoPanel, textPrefab, buttonPrefab, imagePrefab);
 
+		slotNum = 0;
+
 		GameObject company = Instantiate(imagePrefab, infoPanel.transform);
 		company.GetComponent<RectTransform>().anchoredPosition = new Vector2(-250, 160);
 		company.GetComponent<RectTransform>().sizeDelta = new Vector2(30, 30);
@@ -109,12 +112,42 @@ public abstract class Ship : BGComponent
 		infoPanel.transform.GetChild(3).GetComponent<RectTransform>().anchoredPosition = new Vector2(-80, y);
 	}
 
+	public void DisplayUpgrades(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab, GameObject imagePrefab)
+	{
+		slotNum = 0;
+		if (auxSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Auxiliary");
+		if (primSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Primary");
+		if (sHeavySlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Super Heavy");
+		if (systemSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "System");
+		if (wingSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Wing");
+		if (escortSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Escort");
+	}
+
 	private void GenerateSlotText(GameObject infoPanel, GameObject textPrefab, uint slots, string text)
 	{
 		GameObject button = Instantiate(textPrefab, infoPanel.transform);
 		button.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
 		button.GetComponent<RectTransform>().sizeDelta = new Vector2(170, 40);
 		button.GetComponentInChildren<TMP_Text>().text = text + " Slots: " + slots;
+
+		slotNum++;
+		x += 195;
+		if (slotNum % 2 == 0)
+		{
+			x = -175;
+			y -= 40;
+		}
+	}
+
+	private void GenerateSlotButton(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab, string text)
+	{
+		float x = -175;
+		float y = 110;
+
+		GameObject textInstance = Instantiate(textPrefab, infoPanel.transform);
+		textInstance.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
+		textInstance.GetComponent<RectTransform>().sizeDelta = new Vector2(170, 40);
+		textInstance.GetComponentInChildren<TMP_Text>().text = text;
 
 		slotNum++;
 		x += 195;
@@ -154,11 +187,7 @@ public abstract class Ship : BGComponent
 			traitText.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 15);
 			traitText.GetComponent<TMP_Text>().text = "Trait";
 
-			if (this is Houston)
-			{
-				Houston ship = (Houston)this;
-				ship.AddTraitTag(traitText);
-			}
+			if (this is Houston ship) ship.AddTraitTag(traitText);
 
 			GameObject mechText = Instantiate(textPrefab, infoPanel.transform);
 			ContentSizeFitter csf = mechText.AddComponent<ContentSizeFitter>();

@@ -65,7 +65,7 @@ public class FleetPanel : MonoBehaviour
             GameObject selectedButton = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
             GameObject shownShip = selectedButton.transform.GetChild(selectedButton.transform.childCount - 1).gameObject;
             shownShip.transform.SetParent(shipDetailsPanel.transform, false);
-            shipDetailsPanel.GetComponent<ShipDetailsPanel>().Display(selectedButton, shownShip);
+            shipDetailsPanel.GetComponent<ShipDetailsPanel>().Display(selectedButton, shownShip.GetComponent<Ship>());
         }
 	}
 
