@@ -61,12 +61,12 @@ public abstract class Ship : BGComponent
 		isFlagship = false;
 		shipName = null;
 		playerDesc = null;
-		auxSlots = 0;
-		primSlots = 0;
-		sHeavySlots = 0;
-		systemSlots = 0;
-		wingSlots = 0;
-		escortSlots = 0;
+		//auxSlots = 0;
+		//primSlots = 0;
+		//sHeavySlots = 0;
+		//systemSlots = 0;
+		//wingSlots = 0;
+		//escortSlots = 0;
 	}
 
 	// Update is called once per frame
@@ -115,12 +115,17 @@ public abstract class Ship : BGComponent
 	public void DisplayUpgrades(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab, GameObject imagePrefab)
 	{
 		slotNum = 0;
-		if (auxSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Auxiliary");
-		if (primSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Primary");
-		if (sHeavySlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Super Heavy");
-		if (systemSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "System");
-		if (wingSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Wing");
-		if (escortSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Escort");
+		x = -175;
+		y = 110;
+
+		if (auxSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Auxiliary", auxSlots);
+		if (primSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Primary", primSlots);
+		if (sHeavySlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Super Heavy", sHeavySlots);
+		if (systemSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "System", systemSlots);
+		if (wingSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Wing", wingSlots);
+		if (escortSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Escort", escortSlots);
+
+		//y -= 70;
 	}
 
 	private void GenerateSlotText(GameObject infoPanel, GameObject textPrefab, uint slots, string text)
@@ -139,22 +144,46 @@ public abstract class Ship : BGComponent
 		}
 	}
 
-	private void GenerateSlotButton(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab, string text)
+	private void GenerateSlotButton(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab, string componentType, uint numSlots)
 	{
-		float x = -175;
-		float y = 110;
+		float originalX = x;
+		float originalY = y;
 
-		GameObject textInstance = Instantiate(textPrefab, infoPanel.transform);
-		textInstance.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
-		textInstance.GetComponent<RectTransform>().sizeDelta = new Vector2(170, 40);
-		textInstance.GetComponentInChildren<TMP_Text>().text = text;
+		GameObject text = Instantiate(textPrefab, infoPanel.transform);
+		text.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
+		text.GetComponent<RectTransform>().sizeDelta = new Vector2(350, 50);
+		text.GetComponentInChildren<TMP_Text>().text = componentType;
+
+		x -= 100;
+		y -= 60;
+
+		for (int i = 1; i <= numSlots; i++)
+		{
+			GameObject button = Instantiate(buttonPrefab, infoPanel.transform);
+			button.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
+			button.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 50);
+			button.GetComponentInChildren<TMP_Text>().text = "No " + componentType + " Installed";
+
+			x += 175;
+			if (i % 2 == 0)
+			{
+				x -= 350;
+				y -= 75;
+			}
+		}
+
+		x = originalX;
+		y = originalY;
 
 		slotNum++;
-		x += 195;
 		if (slotNum % 2 == 0)
 		{
 			x = -175;
-			y -= 40;
+			y -= 190;
+		}
+		else
+		{
+			x += 375;
 		}
 	}
 
