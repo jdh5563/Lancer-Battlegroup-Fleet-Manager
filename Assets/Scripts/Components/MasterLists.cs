@@ -23,9 +23,9 @@ public class MasterLists : ScriptableObject
 		components.Add("Carrier", carriers);
 		components.Add("Battleship", battleships);
 		components.Add("System", systems);
-		components.Add("Auxiliary Weapon", auxWeapons);
-		components.Add("Primary Weapon", primWeapons);
-		components.Add("Super Heavy Weapon", sHeavyWeapons);
+		components.Add("Auxiliary", auxWeapons);
+		components.Add("Primary", primWeapons);
+		components.Add("Super Heavy", sHeavyWeapons);
 		components.Add("Wing", wings);
 		components.Add("Escort", escorts);
 	}

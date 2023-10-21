@@ -43,9 +43,22 @@ MonoBehaviour:
   - {fileID: 8989325461054749016, guid: 30b53655902428045ac4daef96f51423, type: 3}
   - {fileID: 1395480991853514262, guid: dfac5a60dc3a80145a91f51fc12b5501, type: 3}
   - {fileID: 1395480991853514262, guid: dfac5a60dc3a80145a91f51fc12b5501, type: 3}
-  systems: []
-  auxWeapons: []
-  primWeapons: []
-  sHeavyWeapons: []
-  wings: []
-  escorts: []
+  systems:
+  - {fileID: 1879474465148043913, guid: da89f908f1ad71844a3c60c956bd4236, type: 3}
+  - {fileID: 4914316813916608783, guid: e172829d13cfb294a9e1d4fd7ea02c6c, type: 3}
+  auxWeapons:
+  - {fileID: 8345313753056993174, guid: ed76ac45cc727794f86e285056b7a5de, type: 3}
+  - {fileID: 1723845326099593364, guid: c589f221e00c64a4e98001d7615392d0, type: 3}
+  primWeapons:
+  - {fileID: 1329624589522289401, guid: 97b91e548f64473408c8d4ddf2139d9f, type: 3}
+  - {fileID: 1776094542518021595, guid: 8df209fcc57c9124284ff54396139c18, type: 3}
+  - {fileID: 6123134739894718579, guid: 792cfdd2be0e2324cb259a2f1d63b458, type: 3}
+  sHeavyWeapons:
+  - {fileID: 5050402085262936610, guid: b2b0c49767ee33849874d8460f04aaa9, type: 3}
+  - {fileID: 381718201336670446, guid: af02ccb34e31b0c4393cd8f2fb1a80ce, type: 3}
+  wings:
+  - {fileID: 1920505647245606000, guid: caba9c86c418b294cb464df21c05b6ac, type: 3}
+  - {fileID: 4407093403882765384, guid: 090ab79199297ae46bef1e24cb401a62, type: 3}
+  escorts:
+  - {fileID: 7302739513779240053, guid: 1855e02ddb4b13d4da0245feb9c55539, type: 3}
+  - {fileID: 7460621816651709217, guid: 6ea495527ae9e894ca34b2d350700ba4, type: 3}
