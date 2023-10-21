@@ -4,7 +4,6 @@ using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 using static System.Net.Mime.MediaTypeNames;
 
 public enum Company
@@ -47,6 +46,9 @@ public abstract class Ship : BGComponent
 	private float y = 85;
 	private float longestText = 0f;
 
+	private GameObject purchasePanel;
+	private GameObject shipDetailsPanel;
+
 	public Texture2D ShipArt { get { return shipArt; } }
 
     protected override void Awake()
@@ -61,6 +63,8 @@ public abstract class Ship : BGComponent
 		isFlagship = false;
 		shipName = null;
 		playerDesc = null;
+		purchasePanel = GameObject.Find("Purchase");
+		shipDetailsPanel = purchasePanel.transform.parent.GetChild(purchasePanel.transform.GetSiblingIndex() + 1).gameObject;
 		//auxSlots = 0;
 		//primSlots = 0;
 		//sHeavySlots = 0;
@@ -118,12 +122,12 @@ public abstract class Ship : BGComponent
 		x = -175;
 		y = 110;
 
-		if (auxSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Auxiliary", auxSlots);
-		if (primSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Primary", primSlots);
-		if (sHeavySlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Super Heavy", sHeavySlots);
-		if (systemSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "System", systemSlots);
-		if (wingSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Wing", wingSlots);
-		if (escortSlots > 0) GenerateSlotButton(infoPanel, textPrefab, buttonPrefab, "Escort", escortSlots);
+		if (auxSlots > 0) GenerateUpgradeButton(infoPanel, textPrefab, buttonPrefab, "Auxiliary", auxSlots);
+		if (primSlots > 0) GenerateUpgradeButton(infoPanel, textPrefab, buttonPrefab, "Primary", primSlots);
+		if (sHeavySlots > 0) GenerateUpgradeButton(infoPanel, textPrefab, buttonPrefab, "Super Heavy", sHeavySlots);
+		if (systemSlots > 0) GenerateUpgradeButton(infoPanel, textPrefab, buttonPrefab, "System", systemSlots);
+		if (wingSlots > 0) GenerateUpgradeButton(infoPanel, textPrefab, buttonPrefab, "Wing", wingSlots);
+		if (escortSlots > 0) GenerateUpgradeButton(infoPanel, textPrefab, buttonPrefab, "Escort", escortSlots);
 
 		//y -= 70;
 	}
@@ -144,7 +148,7 @@ public abstract class Ship : BGComponent
 		}
 	}
 
-	private void GenerateSlotButton(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab, string componentType, uint numSlots)
+	private void GenerateUpgradeButton(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab, string componentType, uint numSlots)
 	{
 		float originalX = x;
 		float originalY = y;
@@ -163,6 +167,10 @@ public abstract class Ship : BGComponent
 			button.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
 			button.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 50);
 			button.GetComponentInChildren<TMP_Text>().text = "No " + componentType + " Installed";
+
+			button.GetComponent<Button>().onClick.AddListener(() => purchasePanel.GetComponent<PurchasePanel>().DisplaySidebar(componentType));
+			button.GetComponent<Button>().onClick.AddListener(() => purchasePanel.SetActive(true));
+			button.GetComponent<Button>().onClick.AddListener(() => shipDetailsPanel.SetActive(false));
 
 			x += 175;
 			if (i % 2 == 0)

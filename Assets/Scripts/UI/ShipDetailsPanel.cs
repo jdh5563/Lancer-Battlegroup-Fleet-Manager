@@ -67,4 +67,9 @@ public class ShipDetailsPanel : MonoBehaviour
 			info.transform.parent.GetChild(elementIndex).SetParent(info.transform);
 		}
 	}
+
+    public void UpdateShipDetails(GameObject selectedButton)
+    {
+
+    }
 }

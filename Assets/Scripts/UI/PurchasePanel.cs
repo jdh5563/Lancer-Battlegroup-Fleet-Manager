@@ -32,7 +32,7 @@ public class PurchasePanel : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        backButton.GetComponent<Button>().onClick.AddListener(() => purchaseButton.GetComponent<Button>().onClick.RemoveListener(CallUpdateShipView));
+        
     }
 
     // Update is called once per frame
@@ -49,8 +49,17 @@ public class PurchasePanel : MonoBehaviour
 	private void GenerateButton(BGComponent component)
     {
 		GameObject buttonObj = Instantiate(buttonPrefab);
-        int hyphenIndex = component.ComponentName.IndexOf("-");
-		buttonObj.GetComponentInChildren<TMP_Text>().text = component.ComponentName.Substring(0, hyphenIndex);
+
+        if (component is Ship)
+        {
+            int hyphenIndex = component.ComponentName.IndexOf("-");
+            buttonObj.GetComponentInChildren<TMP_Text>().text = component.ComponentName.Substring(0, hyphenIndex);
+        }
+        else
+        {
+			buttonObj.GetComponentInChildren<TMP_Text>().text = component.ComponentName;
+		}
+
 		buttonObj.GetComponent<Button>().onClick.AddListener(() => { DisplayInfo(component); });
 		buttonObj.transform.SetParent(content.transform, false);
 	}
@@ -58,7 +67,22 @@ public class PurchasePanel : MonoBehaviour
 	public void DisplaySidebar(string componentType)
     {
         selectedButton = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
-		purchaseButton.GetComponent<Button>().onClick.AddListener(CallUpdateShipView);
+
+        if (selectedButton.transform.parent.name == "Fleet View")
+        {
+            purchaseButton.GetComponent<Button>().onClick.AddListener(CallUpdateShipView);
+			purchaseButton.GetComponent<Button>().onClick.AddListener(EnableFleetPanel);
+			backButton.GetComponent<Button>().onClick.AddListener(RemoveFleetFunctionality);
+			backButton.GetComponent<Button>().onClick.AddListener(EnableFleetPanel);
+		}
+        else
+        {
+            purchaseButton.GetComponent<Button>().onClick.AddListener(CallUpdateShipDetails);
+			purchaseButton.GetComponent<Button>().onClick.AddListener(EnableShipDetailsPanel);
+			backButton.GetComponent<Button>().onClick.AddListener(RemoveShipDetailsFunctionality);
+			backButton.GetComponent<Button>().onClick.AddListener(EnableShipDetailsPanel);
+		}
+
 		header.GetComponentInChildren<TMP_Text>().text = componentType;
 
         for(int i = 0; i < content.transform.childCount; i++)
@@ -118,11 +142,50 @@ public class PurchasePanel : MonoBehaviour
         if (selectedButton.transform.GetChild(selectedButton.transform.childCount - 1).TryGetComponent(out BGComponent ship)) DestroyImmediate(ship.gameObject);
         currentComponent.transform.SetParent(selectedButton.transform, false);
         currentComponent = null;
-		purchaseButton.GetComponent<Button>().onClick.RemoveListener(CallUpdateShipView);
+
+		if (selectedButton.transform.parent.name == "Fleet View")
+		{
+            RemoveFleetFunctionality();
+		}
+		else
+		{
+            RemoveShipDetailsFunctionality();
+		}
 	}
 
     private void CallUpdateShipView()
     {
-        selectedButton.GetComponentInParent<FleetPanel>().UpdateShipView(selectedButton);
+		selectedButton.transform.parent.GetComponent<FleetPanel>().UpdateShipView(selectedButton);
+	}
+
+    private void CallUpdateShipDetails()
+    {
+        selectedButton.transform.parent.parent.parent.GetComponent<ShipDetailsPanel>().UpdateShipDetails(selectedButton);
+    }
+
+    private void EnableFleetPanel()
+    {
+        selectedButton.transform.parent.gameObject.SetActive(true);
+	}
+
+    private void EnableShipDetailsPanel()
+    {
+		selectedButton.transform.parent.parent.parent.gameObject.SetActive(true);
+	}
+
+    private void RemoveFleetFunctionality()
+    {
+		purchaseButton.GetComponent<Button>().onClick.RemoveListener(CallUpdateShipView);
+		purchaseButton.GetComponent<Button>().onClick.RemoveListener(EnableFleetPanel);
+		backButton.GetComponent<Button>().onClick.RemoveListener(RemoveFleetFunctionality);
+		backButton.GetComponent<Button>().onClick.RemoveListener(EnableFleetPanel);
+	}
+
+    private void RemoveShipDetailsFunctionality()
+    {
+        purchaseButton.GetComponent<Button>().onClick.RemoveListener(CallUpdateShipDetails);
+        purchaseButton.GetComponent<Button>().onClick.RemoveListener(EnableShipDetailsPanel);
+		backButton.GetComponent<Button>().onClick.RemoveListener(RemoveShipDetailsFunctionality);
+		backButton.GetComponent<Button>().onClick.RemoveListener(EnableShipDetailsPanel);
 	}
 }
