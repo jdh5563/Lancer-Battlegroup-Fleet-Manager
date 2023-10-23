@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class MarineLanders : Subline
 {
-	private void Awake()
+	protected override void Awake()
 	{
+		base.Awake();
+
 		flavorText = MiscData.HURON_FLAVOR;
 		tags.Add(Tag.Boarding, 10);
 	}

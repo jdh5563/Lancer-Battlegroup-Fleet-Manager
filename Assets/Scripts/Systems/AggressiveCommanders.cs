@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class AggressiveCommanders : ShipSystem
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         flavorText = MiscData.FLAK_SCREEN_TEXT;
         mechanicalText = MiscData.FLAK_SCREEN_TEXT;
         tags.Add(Tag.Unique, 0);
@@ -19,6 +21,6 @@ public class AggressiveCommanders : ShipSystem
 
     public override void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab, GameObject imagePrefab)
     {
-
-    }
+		base.Display(infoPanel, textPrefab, buttonPrefab, imagePrefab);
+	}
 }

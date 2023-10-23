@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class BraceForImpact : ShipSystem
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         flavorText = MiscData.FLAK_SCREEN_TEXT;
         mechanicalText = MiscData.FLAK_SCREEN_TEXT;
         tags.Add(Tag.Limited, 1);
@@ -20,8 +22,8 @@ public class BraceForImpact : ShipSystem
 
     public override void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab, GameObject imagePrefab)
     {
-
-    }
+		base.Display(infoPanel, textPrefab, buttonPrefab, imagePrefab);
+	}
 
     class BraceAction : Action
     {

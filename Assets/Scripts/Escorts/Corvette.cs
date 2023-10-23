@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class Corvette : Subline
 {
-	private void Awake()
+	protected override void Awake()
 	{
+		base.Awake();
+
 		flavorText = MiscData.HURON_FLAVOR;
 		mechanicalText = MiscData.HURON_FLAVOR;
 		tactics.Add(new CorvetteCommand());

@@ -13,12 +13,17 @@ public class Subline : BGComponent
     [SerializeField] protected uint maxRange;
     [SerializeField] protected int hp;
 
+    protected override void Awake()
+    {
+        base.Awake();
+		tags = new Dictionary<Tag, int>();
+		tactics = new List<Action>();
+	}
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        tags = new Dictionary<Tag, int>();
-        tactics = new List<Action>();
         isWing = false;
         mechanicalText = "";
         minRange = MiscData.NO_RANGE;

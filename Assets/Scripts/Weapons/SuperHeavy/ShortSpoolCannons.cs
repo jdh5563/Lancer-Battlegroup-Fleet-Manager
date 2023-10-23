@@ -5,8 +5,10 @@ using static UnityEngine.ParticleSystem;
 
 public class ShortSpoolCannons : SuperHeavyWeapon
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         flavorText = MiscData.FLAK_SCREEN_TEXT;
         mechanicalText = MiscData.FLAK_SCREEN_TEXT;
         tags.Add(Tag.Reliable, 2);
@@ -20,6 +22,6 @@ public class ShortSpoolCannons : SuperHeavyWeapon
 
     public override void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab, GameObject imagePrefab)
 	{
-
+		base.Display(infoPanel, textPrefab, buttonPrefab, imagePrefab);
 	}
 }

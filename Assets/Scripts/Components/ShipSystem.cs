@@ -8,12 +8,18 @@ public abstract class ShipSystem : BGComponent
     [SerializeField] protected List<Action> actions;
     [SerializeField] protected string mechanicalText;
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+		actions = new List<Action>();
+		tags = new Dictionary<Tag, int>();
+	}
+
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        actions = new List<Action>();
-        tags = new Dictionary<Tag, int>();
     }
 
     // Update is called once per frame

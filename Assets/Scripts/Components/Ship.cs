@@ -128,8 +128,6 @@ public abstract class Ship : BGComponent
 		if (systemSlots > 0) GenerateUpgradeButton(infoPanel, textPrefab, buttonPrefab, "System", systemSlots);
 		if (wingSlots > 0) GenerateUpgradeButton(infoPanel, textPrefab, buttonPrefab, "Wing", wingSlots);
 		if (escortSlots > 0) GenerateUpgradeButton(infoPanel, textPrefab, buttonPrefab, "Escort", escortSlots);
-
-		//y -= 70;
 	}
 
 	private void GenerateSlotText(GameObject infoPanel, GameObject textPrefab, uint slots, string text)
