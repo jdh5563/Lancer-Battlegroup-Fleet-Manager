@@ -10,8 +10,9 @@ public abstract class Weapon : BGComponent
 	[SerializeField] protected uint minRange;
 	[SerializeField] protected uint maxRange;
 
-	private float x;
-	private float y;
+	protected GameObject rangeText = null;
+	protected float x = 0;
+	protected float y = 0;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -54,9 +55,9 @@ prefer more traditional strategies.
 
 		GameObject pointCostDisplay = infoPanel.transform.GetChild(2).gameObject;
 		x = pointCostDisplay.GetComponent<RectTransform>().anchoredPosition.x;
-		y = pointCostDisplay.GetComponent<RectTransform>().anchoredPosition.y - pointCostDisplay.GetComponent<RectTransform>().sizeDelta.y / 2 - 10f;
+		y = pointCostDisplay.GetComponent<RectTransform>().anchoredPosition.y - pointCostDisplay.GetComponent<RectTransform>().sizeDelta.y / 2 - 20f;
 
-		GameObject rangeText = Instantiate(textPrefab, infoPanel.transform);
+		rangeText = Instantiate(textPrefab, infoPanel.transform);
 		rangeText.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
 		rangeText.GetComponent<RectTransform>().sizeDelta = new Vector2(140, 25);
 		rangeText.GetComponent<TMP_Text>().text = "Range " + maxRange + "-" + minRange;

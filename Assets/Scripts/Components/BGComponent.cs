@@ -26,6 +26,8 @@ public abstract class BGComponent : MonoBehaviour
     [SerializeField] protected string flavorText;
 	[SerializeField] protected uint pointCost;
 
+    //protected GameObject keyInfoLayout = null;
+
     public string ComponentName
     {
         get { return componentName; }
@@ -50,6 +52,19 @@ public abstract class BGComponent : MonoBehaviour
 
     public virtual void Display(GameObject infoPanel, GameObject textPrefab, GameObject buttonPrefab, GameObject imagePrefab)
     {
+  //      keyInfoLayout = new GameObject();
+  //      keyInfoLayout.transform.parent = infoPanel.transform;
+		//VerticalLayoutGroup vlg = keyInfoLayout.AddComponent<VerticalLayoutGroup>();
+  //      keyInfoLayout.GetComponent<RectTransform>().anchoredPosition = new Vector2(192, 50);
+  //      keyInfoLayout.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 50);
+  //      vlg.spacing = 44.5f;
+		//vlg.childControlHeight = true;
+		//vlg.childControlWidth = false;
+  //      vlg.childForceExpandHeight = false;
+  //      vlg.childForceExpandWidth = false;
+  //      vlg.childScaleHeight = false;
+  //      vlg.childScaleWidth = false;
+
 		GameObject nameText = Instantiate(textPrefab, infoPanel.transform);
 		nameText.GetComponent<RectTransform>().anchoredPosition = new Vector2(-40, 160);
 		nameText.GetComponent<RectTransform>().sizeDelta = new Vector2(375, 25);
